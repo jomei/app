@@ -6,6 +6,7 @@ defmodule Api.Participant do
   schema "participants" do
     field :balance, Money.Ecto.Type, default: 0
     belongs_to :box, Api.Box
+    belongs_to :user, Api.User
 
     timestamps()
   end
