@@ -3,7 +3,7 @@ defmodule Api.Repo.Migrations.CreateParticipants do
 
   def change do
     create table(:participants) do
-
+      add :balance, :integer, default: 0
       timestamps()
     end
 
