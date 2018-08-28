@@ -42,7 +42,8 @@ defmodule Api.Mixfile do
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
       {:money, "~> 1.2.1"},
-      {:oauth2, "~> 0.9"}
+      {:oauth2, "~> 0.9"},
+      {:guardian, "~> 1.0"}
     ]
   end
 

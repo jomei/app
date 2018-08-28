@@ -61,7 +61,6 @@ config :api,
        hostname: "localhost",
        pool_size: 10
 
-
 config :money,
        default_currency: :RUR,
        separator: ".",
@@ -69,3 +68,13 @@ config :money,
        symbol: false,
        symbol_on_right: false,
        symbol_space: false
+
+
+config :joken, config_module: Guardian.JWT
+
+config :guardian, Guardian,
+       issuer: "Api",
+       ttl: { 10, :days },
+       verify_issuer: true,
+       secret_key: "some_very_secret_key",
+       serializer: Api.Account.GuardianSerializer

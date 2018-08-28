@@ -19,4 +19,12 @@ defmodule Api.Account.User do
     |> cast(attrs, [:first_name, :last_name, :email, :password])
     |> validate_required([:first_name, :last_name, :email, :password])
   end
+
+  def login_changeset(model), do: model |> cast(%{}, ~w(), ~w(email password))
+
+  def login_changeset(model, params) do
+    model
+    |> cast(params, ~w(email password), ~w())
+    |> validate_password
+  end
 end
