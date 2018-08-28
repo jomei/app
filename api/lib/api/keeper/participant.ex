@@ -1,12 +1,12 @@
-defmodule Api.Participant do
+defmodule Api.Keeper.Participant do
   use Ecto.Schema
   import Ecto.Changeset
 
 
   schema "participants" do
     field :balance, Money.Ecto.Type, default: 0
-    belongs_to :box, Api.Box
-    belongs_to :user, Api.User
+    belongs_to :box, Api.Keeper.Box
+    belongs_to :user, Api.Account.User
 
     timestamps()
   end

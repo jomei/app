@@ -1,4 +1,4 @@
-defmodule Api.User do
+defmodule Api.Account.User do
   use Ecto.Schema
   import Ecto.Changeset
 
@@ -8,7 +8,7 @@ defmodule Api.User do
     field :first_name, :string
     field :last_name, :string
     field :password, :string
-    has_many :participants, Api.Participant
+    has_many :participants, Api.Keeper.Participant
 
     timestamps()
   end

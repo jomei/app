@@ -5,7 +5,7 @@ defmodule Api.Mixfile do
     [
       app: :api,
       version: "0.0.1",
-      elixir: "~> 1.4",
+      elixir: "~> 1.5",
       elixirc_paths: elixirc_paths(Mix.env),
       compilers: [:phoenix, :gettext] ++ Mix.compilers,
       start_permanent: Mix.env == :prod,
@@ -20,7 +20,7 @@ defmodule Api.Mixfile do
   def application do
     [
       mod: {Api.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :oauth2]
     ]
   end
 
@@ -41,7 +41,8 @@ defmodule Api.Mixfile do
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
-      {:money, "~> 1.2.1"}
+      {:money, "~> 1.2.1"},
+      {:oauth2, "~> 0.9"}
     ]
   end
 

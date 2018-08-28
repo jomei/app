@@ -1,11 +1,11 @@
-defmodule Api.Box do
+defmodule Api.Keeper.Box do
   use Ecto.Schema
   import Ecto.Changeset
 
 
   schema "boxes" do
     field :name, :string
-    has_many :participants, Api.Participant
+    has_many :participants, Api.Keeper.Participant
 
     timestamps()
   end

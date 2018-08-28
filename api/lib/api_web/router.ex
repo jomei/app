@@ -13,6 +13,13 @@ defmodule ApiWeb.Router do
     plug :accepts, ["json"]
   end
 
+  scope "/auth", ApiWeb do
+    pipe_through :browser # Use the default browser stack
+
+    get "/:provider", ApiWeb.User.AuthController, :index
+    get "/:provider/callback", ApiWeb.User.AuthController, :callback
+  end
+
   scope "/", ApiWeb do
     pipe_through :browser # Use the default browser stack
 
