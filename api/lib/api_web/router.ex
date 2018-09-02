@@ -13,24 +13,6 @@ defmodule ApiWeb.Router do
     plug :accepts, ["json"]
   end
 
-  pipeline :browser_session do
-    plug Guardian.Plug.VerifySession
-    plug Guardian.Plug.LoadResource
-  end
-
-  scope "/auth", ApiWeb do
-    pipe_through :api, :browser, :browser_session # Use the default browser stack
-
-    get "/login", Account.AuthController, :new, as: :login
-    post "/login", Account.AuthController, :create, as: :login
-    delete "/logout", Account.AuthController, :delete, as: :logout
-    get "/logout", Account.AuthController, :delete, as: :logout
-
-
-    get "/:provider", ApiWeb.User.AuthController, :index
-    get "/:provider/callback", ApiWeb.User.AuthController, :callback
-  end
-
   scope "/", ApiWeb do
     pipe_through :browser # Use the default browser stack
 

@@ -6,15 +6,12 @@ use Mix.Config
 # The watchers configuration can be used to run external
 # watchers to your application. For example, we use it
 # with brunch.io to recompile .js and .css sources.
-config :api,
-       ApiWeb.Endpoint,
-       http: [
-         port: 4000
-       ],
-       debug_errors: true,
-       code_reloader: true,
-       check_origin: false,
-       watchers: []
+config :api, ApiWeb.Endpoint,
+  http: [port: 4000],
+  debug_errors: true,
+  code_reloader: true,
+  check_origin: false,
+  watchers: []
 
 # ## SSL Support
 #
@@ -33,16 +30,15 @@ config :api,
 # different ports.
 
 # Watch static and templates for browser reloading.
-config :api,
-       ApiWeb.Endpoint,
-       live_reload: [
-         patterns: [
-           ~r{priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$},
-           ~r{priv/gettext/.*(po)$},
-           ~r{lib/api_web/views/.*(ex)$},
-           ~r{lib/api_web/templates/.*(eex)$}
-         ]
-       ]
+config :api, ApiWeb.Endpoint,
+  live_reload: [
+    patterns: [
+      ~r{priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$},
+      ~r{priv/gettext/.*(po)$},
+      ~r{lib/api_web/views/.*(ex)$},
+      ~r{lib/api_web/templates/.*(eex)$}
+    ]
+  ]
 
 # Do not include metadata nor timestamps in development logs
 config :logger, :console, format: "[$level] $message\n"
@@ -52,29 +48,10 @@ config :logger, :console, format: "[$level] $message\n"
 config :phoenix, :stacktrace_depth, 20
 
 # Configure your database
-config :api,
-       Api.Repo,
-       adapter: Ecto.Adapters.Postgres,
-       username: "postgres",
-       password: "postgres",
-       database: "api_dev",
-       hostname: "localhost",
-       pool_size: 10
-
-config :money,
-       default_currency: :RUR,
-       separator: ".",
-       delimeter: ",",
-       symbol: false,
-       symbol_on_right: false,
-       symbol_space: false
-
-
-config :joken, config_module: Guardian.JWT
-
-config :guardian, Guardian,
-       issuer: "Api",
-       ttl: { 10, :days },
-       verify_issuer: true,
-       secret_key: "some_very_secret_key",
-       serializer: Api.Account.GuardianSerializer
+config :api, Api.Repo,
+  adapter: Ecto.Adapters.Postgres,
+  username: "postgres",
+  password: "postgres",
+  database: "api_dev",
+  hostname: "localhost",
+  pool_size: 10
