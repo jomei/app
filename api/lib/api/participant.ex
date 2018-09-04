@@ -4,7 +4,7 @@ defmodule Api.Participant do
 
 
   schema "participants" do
-    field :balance, :integer #todo: add money type
+    field :balance, :integer, default: 0 #todo: add money type
     belongs_to :user, Api.Account.User
     has_many :deposits, Api.Deposit
     has_many :debts, Api.Debt
