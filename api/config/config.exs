@@ -12,8 +12,8 @@ config :api,
 # Configures the endpoint
 config :api, ApiWeb.Endpoint,
   url: [host: "localhost"],
-  secret_key_base: "u60W4MZ+4dDcKzTas60mF3r5FdKMoG1lDjLD9B7HLtcwjdltQAux17WXKEgLP5/C",
-  render_errors: [view: ApiWeb.ErrorView, accepts: ~w(html json)],
+  secret_key_base: "vi5kmqNy/4jkcAiwY08Y/NX+cYHVggOa+bTpSncLSzlW/VvBcDiybpjeNju8ub9R",
+  render_errors: [view: ApiWeb.ErrorView, accepts: ~w(json)],
   pubsub: [name: Api.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
@@ -21,6 +21,11 @@ config :api, ApiWeb.Endpoint,
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:user_id]
+
+config :api, Api.Guardian,
+       issuer: "api",
+       secret_key: "6hcdpjsK5rcK1XscnlILzKzqo85Ya3p5ZpNBr+fx9XbfrLl6SSqGLA/D45UBxVUz"
+
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

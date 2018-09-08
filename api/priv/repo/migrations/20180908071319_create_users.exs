@@ -4,13 +4,11 @@ defmodule Api.Repo.Migrations.CreateUsers do
   def change do
     create table(:users) do
       add :email, :string
-      add :first_name, :string
-      add :last_name, :string
-      add :password, :string
+      add :password_hash, :string
 
       timestamps()
     end
 
-    create index(:users, [:email], unique: true)
+    create unique_index(:users, [:email])
   end
 end
