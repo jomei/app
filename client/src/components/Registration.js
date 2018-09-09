@@ -16,7 +16,8 @@ class Registration extends Component {
       loading: false
     };
 
-    this.registerUser= this.registerUser.bind(this)
+    this.registerUser= this.registerUser.bind(this);
+    this.handleResponse = this.handleResponse.bind(this);
     this.onRegistrationFail = this.onRegistrationFail.bind(this);
   }
 
@@ -24,7 +25,7 @@ class Registration extends Component {
     const { email, password, password_confirmation } = this.state;
 
     this.setState({ error: '', loading: true });
-    console.log("h1h")
+
     fetch('http://539c090b.ngrok.io/api/v1/sign_up', {
       method: 'POST',
       headers: {
@@ -38,13 +39,8 @@ class Registration extends Component {
           password_confirmation: password_confirmation}
       }),
     })
-      .then((response) => {
-        console.log(response)
-        deviceStorage.save("id_token", response.data.jwt);
-        this.props.newJWT(response.data.jwt);
-      })
+      .then(this.handleResponse)
       .catch((error) => {
-        console.log("errrd")
         console.log(error);
         this.onRegistrationFail();
       });
@@ -55,6 +51,20 @@ class Registration extends Component {
       error: 'Registration Failed',
       loading: false
     });
+  }
+
+  handleResponse(response) {
+    if(response.status === 422) { this.onRegistrationFail() }
+    response.json().then((data) => {
+      if(data.errors) {
+        return this.onRegistrationFail()
+        // TODO: handle this
+      }
+
+      deviceStorage.save("id_token", data.jwt);
+      this.props.newJWT(data.jwt);
+    })
+
   }
 
   render() {

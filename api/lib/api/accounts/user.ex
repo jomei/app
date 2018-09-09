@@ -21,7 +21,7 @@ defmodule Api.Accounts.User do
     |> cast(attrs, [:email, :password, :password_confirmation])
     |> validate_required([:email, :password, :password_confirmation])
     |> validate_format(:email, ~r/@/)
-    |> validate_length(:password, min: 8)
+    |> validate_length(:password, min: 4)
     |> validate_confirmation(:password)
     |> unique_constraint(:email)
     |> put_password_hash
