@@ -24,26 +24,27 @@ class Registration extends Component {
     const { email, password, password_confirmation } = this.state;
 
     this.setState({ error: '', loading: true });
-
-    const headers = {
-      'Content-Type': 'application/json'
-    };
-
-    axios({
+    console.log("h1h")
+    fetch('http://539c090b.ngrok.io/api/v1/sign_up', {
       method: 'POST',
-      url: 'http://localhost:4000/api/v1/sign_up',
-      headers: headers,
-      body: {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+      },
+      body: JSON.stringify({
         user: {email: email,
-        password: password,
-        password_confirmation: password_confirmation}
-      }}
-    )
+          password: password,
+          password_confirmation: password_confirmation}
+      }),
+    })
       .then((response) => {
+        console.log(response)
         deviceStorage.save("id_token", response.data.jwt);
         this.props.newJWT(response.data.jwt);
       })
       .catch((error) => {
+        console.log("errrd")
         console.log(error);
         this.onRegistrationFail();
       });
