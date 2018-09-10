@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import { Loading } from './components/common/';
 import Auth from './screens/Auth';

@@ -3,22 +3,6 @@ import { View } from 'react-native';
 import { Login, Registration } from '../components';
 
 export default class Auth extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      showLogin: false
-    };
-
-    this.whichForm = this.whichForm.bind(this);
-    this.authSwitch = this.authSwitch.bind(this);
-  }
-
-  authSwitch() {
-    this.setState({
-      showLogin: !this.state.showLogin
-    });
-  }
-
   render() {
     return(
       <View style={styles.container}>
@@ -27,14 +11,14 @@ export default class Auth extends Component {
     );
   }
 
-  whichForm() {
-    if(!this.state.showLogin){
+  whichForm = () => {
+    if(!this.props.showLogin){
       return(
-        <Registration authSwitch={this.authSwitch} newJWT={this.props.newJWT}/>
+        <Registration newJWT={this.props.newJWT}/>
       );
     } else {
       return(
-        <Login authSwitch={this.authSwitch} newJWT={this.props.newJWT}/>
+        <Login newJWT={this.props.newJWT}/>
       );
     }
   }

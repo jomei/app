@@ -1,6 +1,8 @@
 import React, {Component, Fragment} from 'react';
 import { View, Text } from 'react-native';
-import { Input, TextLink, Button, Loading } from './common';
+import { connect } from 'react-redux'
+import { Input, TextLink, Button, Loading } from '../components/common';
+import * as actions from '../actions';
 
 import deviceStorage from '../services/deviceStorage';
 
@@ -73,6 +75,7 @@ class Registration extends Component {
   };
 
   onPasswordConfirmationChange = (pwd) => {
+    console.log(this.props)
     this.props.passwordConfirmationChanged(pwd);
   };
 
@@ -101,6 +104,16 @@ class Registration extends Component {
       />
     )
   };
+
+  renderError = () => {
+    return (
+      <View style={{ backgroundColor: 'white' }}>
+        <Text style={styles.errorTextStyle}>
+          {this.props.error}
+        </Text>
+      </View>
+    );
+  }
 
   render() {
     const { email, password, password_confirmation } = this.props;
@@ -137,11 +150,11 @@ class Registration extends Component {
               onChangeText={this.onPasswordConfirmationChange()}
             />
           </View>
-          <Text style={errorTextStyle}>
-            {error}
-          </Text>
 
-          {!loading ?
+          { this.renderError() }
+
+
+          {!this.props.loading ?
             <Button onPress={this.registerUser}>
               Register
             </Button>
@@ -175,4 +188,14 @@ const styles = {
     color: 'red'
   }
 };
-export { Registration };
+const mapStateToProps = (state) => {
+  const { email, password, error, loading } = state.auth;
+  return {
+    email,
+    password,
+    error,
+    loading,
+  }
+};
+
+export default connect(mapStateToProps, actions)(Registration);

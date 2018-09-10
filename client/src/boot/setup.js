@@ -1,13 +1,15 @@
 import * as Expo from "expo";
 import React, { Component } from "react";
 
-import config from "./config"
+import { Provider } from 'react-redux';
 import App from "../App";
+import Router from '../Router'
+import store from "../store/store"
 
 export default class Setup extends Component {
   constructor() {
     super();
-    this.state = config;
+    this.state = {}
     this.state["isReady"] = false;
   }
   componentWillMount() {
@@ -25,9 +27,14 @@ export default class Setup extends Component {
   }
 
   render() {
+    console.log(store)
     if (!this.state.isReady) {
       return <Expo.AppLoading />;
     }
-    return (<App />);
+    return (
+      <Provider store={store}>
+        <Router />
+      </Provider>
+      );
   }
 }
