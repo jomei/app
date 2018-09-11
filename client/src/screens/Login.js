@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Text, View } from 'react-native';
 import { Input, TextLink, Loading, Button } from '../components/common';
+import { Actions } from 'react-native-router-flux';
 import * as actions from '../actions';
 
 class Login extends Component {
@@ -20,8 +21,8 @@ class Login extends Component {
     loginUser(email, password);
   };
 
-  onShowLogin = () => {
-    this.props.showLogin(false)
+  onShowSignUp = () => {
+    Actions.sign_up()
   };
 
   renderError = () => {
@@ -69,7 +70,7 @@ class Login extends Component {
             <Loading size={'large'} />}
 
         </View>
-        <TextLink onPress={this.onShowLogin }>
+        <TextLink onPress={this.onShowSignUp }>
           Don't have an account? Register!
         </TextLink>
       </Fragment>

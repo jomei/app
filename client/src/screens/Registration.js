@@ -2,20 +2,15 @@ import React, {Component, Fragment} from 'react';
 import { View, Text } from 'react-native';
 import { connect } from 'react-redux'
 import { Input, TextLink, Button, Loading } from '../components/common';
+import { Actions } from 'react-native-router-flux';
 import * as actions from '../actions';
 
 class Registration extends Component {
-  constructor(props){
-    console.log("hello reg")
-    super(props);
-  }
-
   onPasswordChange = (pwd) => {
     this.props.passwordChanged(pwd);
   };
 
   onPasswordConfirmationChange = (pwd) => {
-    console.log(this.props)
     this.props.passwordConfirmationChanged(pwd);
   };
 
@@ -56,7 +51,7 @@ class Registration extends Component {
   };
 
   onShowLogin = () => {
-    this.props.showLogin(true)
+    Actions.login()
   };
 
   render() {

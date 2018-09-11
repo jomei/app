@@ -49,9 +49,6 @@ export const passwordConfirmationChanged = (pwd) => {
   };
 };
 
-export const showLogin = (login) => {
-  login ? Actions.login() : Actions.sign_up()
-};
 
 export const signUpUser = (email, pwd, pwd_confirm) => {
   return (dispatch) => {
