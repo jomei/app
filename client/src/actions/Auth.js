@@ -1,4 +1,5 @@
 import { Actions } from 'react-native-router-flux';
+import { Path, Fetch } from '../utils'
 
 import {
   EMAIL_CHANGED,
@@ -12,17 +13,22 @@ import {
 
 
 const loginUserSuccess = (dispatch, user) => {
-  console.log("user")
-  console.log(user)
-  dispatch({
-    type: LOGIN_USER_SUCCESS,
-    payload: user,
-  });
-  Actions.home();
+  if(user.successful()){
+    dispatch({
+      type: LOGIN_USER_SUCCESS,
+      payload: user,
+    });
+
+    Actions.home();
+  } else {
+    dispatch({
+      type: LOGIN_USER_FAIL,
+      payload: user,
+    });
+  }
 };
 
 const loginUserFail = (dispatch, error) => {
-  console.log(error);
   dispatch({
     type: LOGIN_USER_FAIL,
   });
@@ -49,22 +55,15 @@ export const passwordConfirmationChanged = (pwd) => {
   };
 };
 
-
 export const signUpUser = (email, pwd, pwd_confirm) => {
   return (dispatch) => {
-    dispatch({ type: LOGIN_USER });
-    fetch('http://539c090b.ngrok.io/api/v1/sign_up', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*'
-      },
-      body: JSON.stringify({
-        user: {email: email,
-          password: pwd,
-          password_confirmation: pwd_confirm}
-      }),
+    dispatch({ type: LOGIN_USER }); // this shows the loader
+
+    Fetch.post(Path.signUp(),{ user: {
+        email: email,
+        password: pwd,
+        password_confirmation: pwd_confirm
+      }
     })
       .then(user => loginUserSuccess(dispatch, user))
       .catch((error) => loginUserFail(dispatch, error));
@@ -73,17 +72,10 @@ export const signUpUser = (email, pwd, pwd_confirm) => {
 
 export const loginUser = (email, pwd) => {
   return (dispatch) => {
-    fetch('http://539c090b.ngrok.io/api/v1/sign_in', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*'
-      },
-      body: JSON.stringify({
-        email: email,
-        password: pwd
-      }),
+
+    Fetch.post(Path.signIn(), {
+      email: email,
+      password: pwd
     })
       .then(user => loginUserSuccess(dispatch, user))
       .catch((error) => loginUserFail(dispatch, error));

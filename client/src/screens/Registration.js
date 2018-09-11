@@ -27,16 +27,13 @@ class Registration extends Component {
   renderButton = () => {
     if (this.props.loading) {
       return (
-        <Spinner
-          size="large"
-        />
+        <Loading size={'large'} />
       );
     }
     return (
       <Button
-        text="Sign Up"
         onPress={this.onSignUpPress}
-      />
+      >Sign Up</Button>
     )
   };
 
