@@ -4,70 +4,10 @@ import { connect } from 'react-redux'
 import { Input, TextLink, Button, Loading } from '../components/common';
 import * as actions from '../actions';
 
-import deviceStorage from '../services/deviceStorage';
-
 class Registration extends Component {
   constructor(props){
-    console.log(props)
+    console.log("hello reg")
     super(props);
-    this.state = {
-      email: '',
-      password: '',
-      password_confirmation: '',
-      error: '',
-      loading: false
-    };
-
-    this.registerUser= this.registerUser.bind(this);
-    this.handleResponse = this.handleResponse.bind(this);
-    this.onRegistrationFail = this.onRegistrationFail.bind(this);
-  }
-
-  registerUser() {
-    const { email, password, password_confirmation } = this.state;
-
-    this.setState({ error: '', loading: true });
-
-    fetch('http://539c090b.ngrok.io/api/v1/sign_up', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*'
-      },
-      body: JSON.stringify({
-        user: {email: email,
-          password: password,
-          password_confirmation: password_confirmation}
-      }),
-    })
-      .then(this.handleResponse)
-      .catch((error) => {
-        console.log(error);
-        this.onRegistrationFail();
-      });
-  }
-
-  onRegistrationFail() {
-    this.setState({
-      error: 'Registration Failed',
-      loading: false
-    });
-  }
-
-  handleResponse(response) {
-    if(response.status === 422) { this.onRegistrationFail() }
-
-    response.json().then((data) => {
-      if(data.errors) {
-        return this.onRegistrationFail()
-        // TODO: handle this
-      }
-
-      deviceStorage.save("id_token", data.jwt);
-      this.props.newJWT(data.jwt);
-    })
-
   }
 
   onPasswordChange = (pwd) => {
@@ -86,7 +26,7 @@ class Registration extends Component {
   onSignUpPress = () => {
     const { email, password, password_confirmation } = this.props;
 
-    this.props.signUpUser(email, password);
+    this.props.signUpUser(email, password, password_confirmation);
   };
 
   renderButton = () => {
@@ -98,7 +38,7 @@ class Registration extends Component {
       );
     }
     return (
-      <ButtonComponent
+      <Button
         text="Sign Up"
         onPress={this.onSignUpPress}
       />
@@ -113,11 +53,15 @@ class Registration extends Component {
         </Text>
       </View>
     );
-  }
+  };
+
+  onShowLogin = () => {
+    this.props.showLogin(true)
+  };
 
   render() {
     const { email, password, password_confirmation } = this.props;
-    const { form, section, errorTextStyle } = styles;
+    const { form, section } = styles;
 
     return (
       <Fragment>
@@ -147,22 +91,15 @@ class Registration extends Component {
               placeholder="confirm password"
               label="Confirm Password"
               value={password_confirmation}
-              onChangeText={this.onPasswordConfirmationChange()}
+              onChangeText={this.onPasswordConfirmationChange}
             />
           </View>
 
           { this.renderError() }
-
-
-          {!this.props.loading ?
-            <Button onPress={this.registerUser}>
-              Register
-            </Button>
-            :
-            <Loading size={'large'} />}
+          { this.renderButton() }
         </View>
 
-        <TextLink onPress={this.props.switchLogin}>
+        <TextLink onPress={this.onShowLogin}>
           Already have an account? Log in!
         </TextLink>
       </Fragment>
@@ -189,10 +126,11 @@ const styles = {
   }
 };
 const mapStateToProps = (state) => {
-  const { email, password, error, loading } = state.auth;
+  const { email, password, password_confirmation, error, loading } = state.auth;
   return {
     email,
     password,
+    password_confirmation,
     error,
     loading,
   }

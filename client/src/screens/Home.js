@@ -3,7 +3,7 @@ import { View, Text } from 'react-native';
 import { Button, Loading } from '../components/common/';
 import axios from 'axios';
 
-export default class LoggedIn extends Component {
+export default class Home extends Component {
   constructor(props){
     super(props);
     this.state = {

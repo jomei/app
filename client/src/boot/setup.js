@@ -2,15 +2,13 @@ import * as Expo from "expo";
 import React, { Component } from "react";
 
 import { Provider } from 'react-redux';
-import App from "../App";
 import Router from '../Router'
 import store from "../store/store"
 
 export default class Setup extends Component {
   constructor() {
     super();
-    this.state = {}
-    this.state["isReady"] = false;
+    this.state = {"isReady": false};
   }
   componentWillMount() {
     this.loadFonts();
@@ -27,7 +25,6 @@ export default class Setup extends Component {
   }
 
   render() {
-    console.log(store)
     if (!this.state.isReady) {
       return <Expo.AppLoading />;
     }

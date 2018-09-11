@@ -12,11 +12,13 @@ import {
 
 
 const loginUserSuccess = (dispatch, user) => {
+  console.log("user")
+  console.log(user)
   dispatch({
     type: LOGIN_USER_SUCCESS,
     payload: user,
   });
-  Actions.main();
+  Actions.home();
 };
 
 const loginUserFail = (dispatch, error) => {
@@ -47,20 +49,46 @@ export const passwordConfirmationChanged = (pwd) => {
   };
 };
 
-export const switchLogin = () => {
-  return {
-    type: SWITCH_LOGIN,
-  }
-};
-
-export const loginUser = (email, pwd) => {
-  return (dispatch) => {
-    dispatch({ type: LOGIN_USER }); // this is to show the loader
-  };
+export const showLogin = (login) => {
+  login ? Actions.login() : Actions.sign_up()
 };
 
 export const signUpUser = (email, pwd, pwd_confirm) => {
   return (dispatch) => {
-    dispatch({ type: LOGIN_USER }); // this is to show the loader
+    dispatch({ type: LOGIN_USER });
+    fetch('http://539c090b.ngrok.io/api/v1/sign_up', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+      },
+      body: JSON.stringify({
+        user: {email: email,
+          password: pwd,
+          password_confirmation: pwd_confirm}
+      }),
+    })
+      .then(user => loginUserSuccess(dispatch, user))
+      .catch((error) => loginUserFail(dispatch, error));
+  };
+};
+
+export const loginUser = (email, pwd) => {
+  return (dispatch) => {
+    fetch('http://539c090b.ngrok.io/api/v1/sign_in', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+      },
+      body: JSON.stringify({
+        email: email,
+        password: pwd
+      }),
+    })
+      .then(user => loginUserSuccess(dispatch, user))
+      .catch((error) => loginUserFail(dispatch, error));
   };
 };

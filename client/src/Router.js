@@ -1,21 +1,17 @@
 import React from 'react';
-import { Router, Scene, Actions } from 'react-native-router-flux';
-import Auth from './screens/Auth'
+import { Router, Scene, Stack } from 'react-native-router-flux';
 import Registration from './screens/Registration'
+import Login from './screens/Login'
+import Home from './screens/Home'
 
 const RouterComponent = () => {
   return (
-    <Router sceneStyle={{ paddingTop: 65 }}>
-      <Scene
-        key="auth"
-      >
-        <Scene
-          key="Registration"
-          title="Please Reg"
-          component={Registration}
-          initial
-        />
-      </Scene>
+    <Router>
+      <Stack key="root">
+        <Scene key="login" initial={true} component={Login} title="Login"/>
+        <Scene key="sign_up" component={Registration} title="Register"/>
+        <Scene key="home" component={Home}/>
+      </Stack>
     </Router>
   )
 };
