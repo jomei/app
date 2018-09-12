@@ -106,7 +106,7 @@ defmodule Api.Accounts do
   def token_sign_in(email, password) do
     case email_password_auth(email, password) do
       {:ok, user} ->
-        Guardian.encode_and_sign(user)
+        {user, Guardian.encode_and_sign(user)}
       _ ->
         {:error, :unauthorized}
     end
