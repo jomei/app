@@ -12,6 +12,7 @@ defmodule Api.Accounts.User do
     field :password, :string, virtual: true
     field :password_confirmation, :string, virtual: true
 
+    has_many :participants, Api.Keeper.Participant
     timestamps()
   end
 

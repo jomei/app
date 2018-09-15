@@ -42,7 +42,8 @@ defmodule Api.Mixfile do
       {:comeonin, "~> 4.0"},
       {:bcrypt_elixir, "~> 1.0"},
       {:guardian, "~> 1.0"},
-      {:money, "~> 1.2.1"}
+      {:money, "~> 1.2.1"},
+      {:credo, "~> 0.10.0", only: [:dev, :test], runtime: false}
     ]
   end
 

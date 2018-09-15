@@ -27,6 +27,14 @@ config :api, Api.Guardian,
        issuer: "api",
        secret_key: "6hcdpjsK5rcK1XscnlILzKzqo85Ya3p5ZpNBr+fx9XbfrLl6SSqGLA/D45UBxVUz"
 
+config :money,
+       default_currency: :RUR,
+       separator: ".",
+       delimeter: ",",
+       symbol: false,
+       symbol_on_right: false,
+       symbol_space: false
+
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

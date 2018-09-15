@@ -1,11 +1,13 @@
 defmodule ApiWeb.UserController do
   use ApiWeb, :controller
 
+  action_fallback ApiWeb.FallbackController
+
   alias Api.Accounts
   alias Api.Accounts.User
   alias Api.Guardian
 
-  action_fallback ApiWeb.FallbackController
+  require IEx
 
   def index(conn, _params) do
     users = Accounts.list_users()
@@ -15,14 +17,14 @@ defmodule ApiWeb.UserController do
   def create(conn, %{"user" => user_params}) do
     with {:ok, %User{} = user} <- Accounts.create_user(user_params),
          {:ok, token, _claims} <- Guardian.encode_and_sign(user) do
-      conn |> render("user.json", user: user, token: token)
+      conn |> render("sign_up.json", user: user, token: token)
     end
   end
 
   def sign_in(conn, %{"email" => email, "password" => password}) do
     case Accounts.token_sign_in(email, password) do
-      {:ok, {user, token}, _claims} ->
-        conn |> render("user.json", user: user, token: token)
+      {:ok, token, _claims} ->
+        conn |> render("token.json", token: token)
       _ ->
         {:error, :unauthorized}
     end

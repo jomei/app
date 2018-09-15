@@ -1,104 +1,53 @@
 defmodule Api.Keeper do
-  @moduledoc """
-  The Keeper context.
-  """
 
   import Ecto.Query, warn: false
   alias Api.Repo
 
-  alias Api.Keeper.Participant
+  alias Api.{Keeper.Participant, Keeper.Box, Keeper.Deposit, Keeper.Debt}
+  alias Api.Accounts.User
 
-  @doc """
-  Returns the list of participants.
+  alias Ecto.Multi
 
-  ## Examples
+  require IEx
 
-      iex> list_participants()
-      [%Participant{}, ...]
-
-  """
-  def list_participants do
-    Repo.all(Participant)
+  def get_participants(user) do
+    user
+    |> Ecto.assoc(:participants)
+    |> Repo.all
+    |> Repo.preload(box: [participants: [deposits: [:debts]], debts: []])
   end
 
-  @doc """
-  Gets a single participant.
+  def create_box(%User{} = user, attrs \\ %{}) do
+    Multi.new
+    |> Multi.insert(:participant, Participant.changeset(%Participant{}, user, %{}))
+    |> Multi.merge(fn (%{participant: participant}) -> create_box_with_participant(participant, attrs) end)
+    |> Repo.transaction()
+  end
 
-  Raises `Ecto.NoResultsError` if the Participant does not exist.
-
-  ## Examples
-
-      iex> get_participant!(123)
-      %Participant{}
-
-      iex> get_participant!(456)
-      ** (Ecto.NoResultsError)
-
-  """
   def get_participant!(id), do: Repo.get!(Participant, id)
 
-  @doc """
-  Creates a participant.
-
-  ## Examples
-
-      iex> create_participant(%{field: value})
-      {:ok, %Participant{}}
-
-      iex> create_participant(%{field: bad_value})
-      {:error, %Ecto.Changeset{}}
-
-  """
-  def create_participant(attrs \\ %{}) do
+  def create_participant(%User{} = user, attrs \\ %{}) do
     %Participant{}
-    |> Participant.changeset(attrs)
+    |> Participant.changeset(user, attrs)
     |> Repo.insert()
   end
 
-  @doc """
-  Updates a participant.
-
-  ## Examples
-
-      iex> update_participant(participant, %{field: new_value})
-      {:ok, %Participant{}}
-
-      iex> update_participant(participant, %{field: bad_value})
-      {:error, %Ecto.Changeset{}}
-
-  """
   def update_participant(%Participant{} = participant, attrs) do
     participant
     |> Participant.changeset(attrs)
     |> Repo.update()
   end
 
-  @doc """
-  Deletes a Participant.
-
-  ## Examples
-
-      iex> delete_participant(participant)
-      {:ok, %Participant{}}
-
-      iex> delete_participant(participant)
-      {:error, %Ecto.Changeset{}}
-
-  """
   def delete_participant(%Participant{} = participant) do
     Repo.delete(participant)
   end
 
-  @doc """
-  Returns an `%Ecto.Changeset{}` for tracking participant changes.
-
-  ## Examples
-
-      iex> change_participant(participant)
-      %Ecto.Changeset{source: %Participant{}}
-
-  """
   def change_participant(%Participant{} = participant) do
     Participant.changeset(participant, %{})
+  end
+
+  defp create_box_with_participant(participant, attrs) do
+    Multi.new
+    |> Multi.insert(:box, Box.changeset(%Box{}, participant, attrs))
   end
 end

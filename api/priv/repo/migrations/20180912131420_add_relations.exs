@@ -4,11 +4,11 @@ defmodule Api.Repo.Migrations.AddRelations do
   def change do
     alter table(:participants) do
       add :user_id, references(:users)
+      add :box_id, references(:boxes)
     end
 
     alter table(:deposits) do
       add :participant_id, references(:participants)
-      add :box_id, references(:boxes)
     end
 
     alter table(:debts) do
