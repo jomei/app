@@ -15,6 +15,10 @@ class Path {
   static signIn() {
     return this.basePath() + "/sign_in"
   }
+
+  static getUser() {
+    return this.basePath() + "/get_user"
+  }
 }
 
 export { Path }

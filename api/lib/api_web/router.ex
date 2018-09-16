@@ -25,6 +25,7 @@ defmodule ApiWeb.Router do
   scope "/api/v1", ApiWeb do
     pipe_through [:api, :jwt_authenticated]
 
+    post "/get_user", UserController, :show
     resources "/boxes", BoxController
   end
 end

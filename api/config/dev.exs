@@ -44,3 +44,8 @@ config :api, Api.Repo,
   database: "api_dev",
   hostname: "localhost",
   pool_size: 10
+
+# Secret key. You can use `mix guardian.gen.secret` to get one
+config :api, Api.Guardian,
+       issuer: "api",
+       secret_key: "6hcdpjsK5rcK1XscnlILzKzqo85Ya3p5ZpNBr+fx9XbfrLl6SSqGLA/D45UBxVUz"

@@ -24,4 +24,4 @@ if (process.env.NODE_ENV === `development`) {
 // const persistor = persistStore(store);
 // export default { store, persistor }
 
-export default createStore(reducers, applyMiddleware(thunk))
+export default createStore(reducers, applyMiddleware(...middlewares))

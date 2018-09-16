@@ -1,2 +1,2 @@
 export * from './BoxList';
-export * from './UserTumb';
+export * from './UserCard';

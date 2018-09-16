@@ -5,7 +5,8 @@ import {
   LOGIN_USER_SUCCESS,
   LOGIN_USER_FAIL,
   LOGIN_USER,
-  SWITCH_LOGIN
+  SWITCH_LOGIN,
+  SIGN_UP_USER_SUCCESS
 } from '../actions/kinds';
 
 const INITIAL_STATE = {
@@ -19,7 +20,6 @@ const INITIAL_STATE = {
 };
 
 export default (state = INITIAL_STATE, action) => {
-  console.log(action);
   switch (action.type) {
     case EMAIL_CHANGED:
       return {...state, email: action.payload};
@@ -27,7 +27,7 @@ export default (state = INITIAL_STATE, action) => {
       return {...state, password: action.payload};
     case PASSWORD_CONFIRMATION_CHANGED:
       return {...state, password_confirmation: action.payload};
-    case LOGIN_USER_SUCCESS:
+    case SIGN_UP_USER_SUCCESS:
       return {
         ...state,
         user: action.payload,
@@ -46,6 +46,8 @@ export default (state = INITIAL_STATE, action) => {
       return {...state, error: '', loading: true};
     case SWITCH_LOGIN:
       return {...state, showLogin: !state.showLogin};
+    case LOGIN_USER_SUCCESS:
+      return {...state, user: {token: action.payload}};
     default:
       return state;
   }

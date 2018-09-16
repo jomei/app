@@ -30,9 +30,14 @@ defmodule ApiWeb.UserController do
     end
   end
 
-  def show(conn, _params) do
-    user = Guardian.Plug.current_resource(conn)
-    conn |> render("user.json", user: user)
+  # todo: separate user controller and auth
+  def show(conn, %{"email" => email}) do
+
+    case Accounts.get_by_email(email) do
+      {:ok, user} ->
+        conn |> render("show.json", user: user)
+      _ -> {:error, :not_found}
+    end
   end
 
   def update(conn, %{"id" => id, "user" => user_params}) do

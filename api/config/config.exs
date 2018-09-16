@@ -22,10 +22,6 @@ config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:user_id]
 
-# Secret key. You can use `mix guardian.gen.secret` to get one
-config :api, Api.Guardian,
-       issuer: "api",
-       secret_key: "6hcdpjsK5rcK1XscnlILzKzqo85Ya3p5ZpNBr+fx9XbfrLl6SSqGLA/D45UBxVUz"
 
 config :money,
        default_currency: :RUR,

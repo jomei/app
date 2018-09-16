@@ -36,7 +36,7 @@ class Login extends Component {
   };
 
   render() {
-    const { email, password } = this.props;
+    const { email, password, loading } = this.props;
     const { form, section, errorTextStyle } = styles;
 
     return (
@@ -62,7 +62,7 @@ class Login extends Component {
           </View>
 
 
-          {!this.props.loading ?
+          {!loading ?
             <Button onPress={this.onLoginPress}>
               Login
             </Button>
@@ -98,13 +98,14 @@ const styles = {
 };
 
 const mapStateToProps = (state) => {
-  const { email, password, error, loading } = state.auth;
+  const { email, password, error, loading, loginUser} = state.auth;
   return {
     email,
     password,
     error,
     loading,
+    loginUser
   }
-}
+};
 
 export default connect(mapStateToProps, actions)(Login);
