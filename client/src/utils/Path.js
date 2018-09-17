@@ -19,6 +19,10 @@ class Path {
   static getUser() {
     return this.basePath() + "/get_user"
   }
+
+  static boxes() {
+    return this.basePath() + "/boxes"
+  }
 }
 
 export { Path }

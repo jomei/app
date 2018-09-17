@@ -1,3 +1,5 @@
+import store from '../store/store'
+
 class Fetch {
   static DEFAULT_HEADERS = {
     'Accept': 'application/json',
@@ -5,21 +7,21 @@ class Fetch {
     'Access-Control-Allow-Origin': '*'
   };
 
-  static post(path, body, token = null) {
-    console.info("send post: "  + path)
+  static post(path, body) {
+    console.info("send post: "  + path);
     return fetch(path, {
       method: 'POST',
-      headers: this._headers(token),
+      headers: this._headers(),
       body: JSON.stringify(body),
     }).then((response) => {
-      console.log(response)
+      console.log(response);
       return response.json() } )
   }
 
-  static get(path, params, token = null) {
+  static get(path, params = {}) {
     return fetch(this._buildGetURL(path, params), {
       method: 'GET',
-      headers: this._headers(token),
+      headers: this._headers(),
     })
   }
 
@@ -29,7 +31,9 @@ class Fetch {
     }, path);
   }
 
-  static _headers(token) {
+  static _headers() {
+    const token = store.getState().auth.user.token;
+
     if(token){
       return {...this.DEFAULT_HEADERS, 'Authorization':  `Bearer ${token}`}
     } else {

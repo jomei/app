@@ -1,7 +1,7 @@
 import React, {Component, Fragment} from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Button } from 'react-native';
 import { connect } from 'react-redux'
-import { Input, TextLink, Button, Loading } from '../components/common';
+import { Input, TextLink, Loading } from '../components/common';
 import { Actions } from 'react-native-router-flux';
 import * as actions from '../actions';
 
@@ -32,8 +32,9 @@ class Registration extends Component {
     }
     return (
       <Button
+        title="Sign Up"
         onPress={this.onSignUpPress}
-      >Sign Up</Button>
+      />
     )
   };
 

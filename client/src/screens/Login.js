@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { Text, View } from 'react-native';
-import { Input, TextLink, Loading, Button } from '../components/common';
+import { Text, View, Button } from 'react-native';
+import { Input, TextLink, Loading } from '../components/common';
 import { Actions } from 'react-native-router-flux';
 import * as actions from '../actions';
 
@@ -63,9 +63,7 @@ class Login extends Component {
 
 
           {!loading ?
-            <Button onPress={this.onLoginPress}>
-              Login
-            </Button>
+            <Button title="Login" onPress={this.onLoginPress} />
             :
             <Loading size={'large'} />}
 

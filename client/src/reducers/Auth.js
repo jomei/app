@@ -13,7 +13,7 @@ const INITIAL_STATE = {
   email: '',
   password: '',
   password_confirmation: '',
-  user: null,
+  user: {},
   error: '',
   loading: false,
   showLogin: true

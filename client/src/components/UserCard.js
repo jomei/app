@@ -9,7 +9,7 @@ class UserCard extends Component {
     const user = this.props.user;
     return (
       <View>
-        <Text>{ user.email }</Text>
+        <Text style={{fontSize: 18, color: 'blue'}}>{ user.email }</Text>
       </View>
     )
   }
