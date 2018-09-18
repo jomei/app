@@ -28,7 +28,13 @@ defmodule Api.Keeper.Participant do
 
   def total_debt(%Participant{} = p)do
     p.debts
-    |> Enum.map &(&1.amount) #todo: currency
+    |> Enum.map(&(&1.amount)) #todo: currency
     |> Enum.reduce(0, fn debt, acc -> debt.amount + acc end)
+  end
+
+  def total_deposit(%Participant{} = p) do
+    p.deposits
+    |> Enum.map(&(&1.amount)) #todo: currency
+    |> Enum.reduce(0, fn deposit, acc -> deposit.amount + acc end)
   end
 end

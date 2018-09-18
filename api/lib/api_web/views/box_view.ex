@@ -3,7 +3,7 @@ defmodule ApiWeb.BoxView do
 
   alias ApiWeb.BoxView
   alias Api.{Keeper.Box, Keeper.Participant}
-
+require IEx
   def render("box.json", %{box: box}) do
     deposits = box.deposits
                |> Enum.filter(&(&1.amount != 0))
@@ -19,7 +19,8 @@ defmodule ApiWeb.BoxView do
     %{data: render_many(participants, BoxView, "from_participant.json")}
   end
 
-  def render("from_participant.json", %{participant: p}) do
+  def render("from_participant.json", %{box: p}) do
+    IEx.pry
     %{
       id: p.box.id,
       title: p.box.title,

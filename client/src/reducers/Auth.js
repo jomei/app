@@ -28,9 +28,12 @@ export default (state = INITIAL_STATE, action) => {
     case PASSWORD_CONFIRMATION_CHANGED:
       return {...state, password_confirmation: action.payload};
     case SIGN_UP_USER_SUCCESS:
+      let user = state.user;
+      user.id = action.payload.id;
+      user.title = action.payload.title;
       return {
         ...state,
-        user: action.payload,
+        user: user,
         error: '',
         loading: false,
         email: '',

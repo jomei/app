@@ -19,6 +19,7 @@ class Fetch {
   }
 
   static get(path, params = {}) {
+    console.info("send get: "  + this._buildGetURL(path, params));
     return fetch(this._buildGetURL(path, params), {
       method: 'GET',
       headers: this._headers(),
@@ -26,7 +27,7 @@ class Fetch {
   }
 
   static _buildGetURL(path, params) {
-    Object.keys(params).reduce((previous, key) => {
+    return Object.keys(params).reduce((previous, key) => {
       return previous + `&${key}=${params[key]}`;
     }, path);
   }

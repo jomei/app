@@ -24,8 +24,7 @@ defmodule Api.Keeper.Box do
   end
 
   def total(%Box{} = box) do
-    box.deposits
-    |> Enum.map &(&1.amount) #todo: currency
-    |> Enum.reduce(0, fn deposit, acc -> acc + deposit.amount end)
+    box.participants
+    |> Enum.reduce(0, fn p, acc -> acc + Participant.total_deposit(p) end)
   end
 end

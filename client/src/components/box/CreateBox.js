@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
 import * as actions from '../../actions';
 import connect from "react-redux/es/connect/connect";
-import {View, Button} from "react-native";
-import {Input} from "../common";
+import {View, Button, TextInput} from "react-native";
 
 class CreateBox extends Component {
 
@@ -21,7 +20,7 @@ class CreateBox extends Component {
     return(
       <View>
         <View>
-          <Input
+          <TextInput
             placeholder="box name"
             label="Name"
             value={title}

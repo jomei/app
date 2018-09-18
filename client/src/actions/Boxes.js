@@ -10,6 +10,7 @@ import {
 } from './kinds';
 
 const boxesLoaded = (dispatch, response) => {
+  console.log(response.data)
   if(response.data) {
     dispatch({
       type: BOXES_LOADED,
@@ -43,15 +44,15 @@ export const boxTitleChanged = (title) => {
 
 export const createBox = (title) => {
   return (dispatch) => {
-    dispatch({action: BOX_CREATE});
+    dispatch({type: BOX_CREATE});
 
-    Fetch.post(Path.boxes())
+    Fetch.post(Path.boxes(), {box: {title: title}})
       .then(response => boxCreated(dispatch, response))
       .catch((error) => loadingFailed(dispatch, error));
   }
 };
 
 const boxCreated = (dispatch, response) => {
-  dispatch({action: BOX_CREATED});
+  dispatch({type: BOX_CREATED});
   Actions.home();
 };

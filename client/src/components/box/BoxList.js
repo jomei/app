@@ -7,7 +7,17 @@ import {Loading} from "../common";
 
 
 class BoxList extends Component {
+
+  constructor(props) {
+    super(props);
+
+    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1.title !== r2.title});
+    this.state = {
+      dataSource: ds.cloneWithRows(this.props.boxes),
+    };
+  }
   componentDidMount() {
+    console.log("start loading")
     this.props.loadBoxes()
   }
 
@@ -32,12 +42,13 @@ class BoxList extends Component {
     if(error) {
       return(<Text>{error}</Text>)
     }
+    console.log(boxes)
     return (
       <View>
         <ListView
-          dataSource={boxes}
+          dataSource={this.state.dataSource}
           renderRow={this.renderBox} />
-        <Button title="Create Box" onPress={this.onLoginPress} />
+        <Button title="Create Box" onPress={this.onCreatePress} />
       </View>
     );
   };
@@ -51,7 +62,7 @@ class BoxList extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return {boxes: state.boxList}
+  return {boxes: state.boxList.list}
 };
 
 export default connect(mapStateToProps, actions)(BoxList);
