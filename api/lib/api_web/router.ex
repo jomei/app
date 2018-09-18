@@ -27,5 +27,6 @@ defmodule ApiWeb.Router do
 
     post "/get_user", UserController, :show
     resources "/boxes", BoxController
+    resources "/participants", ParticipantController
   end
 end

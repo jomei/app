@@ -15,7 +15,8 @@ class Fetch {
       body: JSON.stringify(body),
     }).then((response) => {
       console.log(response);
-      return response.json() } )
+      return response.json()
+    })
   }
 
   static get(path, params = {}) {
@@ -23,6 +24,9 @@ class Fetch {
     return fetch(this._buildGetURL(path, params), {
       method: 'GET',
       headers: this._headers(),
+    }).then((response) => {
+      console.log(response);
+      return response.json()
     })
   }
 

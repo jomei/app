@@ -10,7 +10,6 @@ import {
 } from './kinds';
 
 const boxesLoaded = (dispatch, response) => {
-  console.log(response.data)
   if(response.data) {
     dispatch({
       type: BOXES_LOADED,
@@ -29,7 +28,7 @@ export const loadBoxes = (token) => {
   return (dispatch) => {
     dispatch({ type: BOXES_LOADING }); // this shows the loader
 
-    Fetch.get(Path.boxes())
+    Fetch.get(Path.participants())
       .then(response => boxesLoaded(dispatch, response))
       .catch((error) => loadingFailed(dispatch, error));
   };

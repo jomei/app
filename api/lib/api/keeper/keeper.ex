@@ -14,7 +14,7 @@ defmodule Api.Keeper do
     user
     |> Ecto.assoc(:participants)
     |> Repo.all
-    |> Repo.preload(box: [participants: [deposits: [:debts], debts: []]], debts: [])
+    |> Repo.preload(box: [participants: [deposits: [:debts], debts: []]], debts: [], deposits: [])
   end
 
   def create_box(%User{} = user, attrs \\ %{}) do
