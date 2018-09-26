@@ -13,4 +13,6 @@ export const BOXES_LOADING = 'boxes_loading';
 export const BOX_TITLE_CHANGED = 'box_title_changed';
 export const BOX_CREATE = 'box_create';
 export const BOX_CREATED = 'box_created';
+export const SHOW_BOX = 'show_box';
+export const BOX_LOADED = 'box_loaded';
 

@@ -2,7 +2,7 @@ defmodule Api.Keeper.Box do
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias Api.{Keeper.Participant, Keeper.Box}
+  alias Api.{Keeper.Participant, Keeper.Box, Accounts.User}
 
 
   schema "boxes" do
@@ -18,7 +18,7 @@ defmodule Api.Keeper.Box do
     |> validate_required([:title])
   end
 
-  def changeset(box, participant, attrs) do
+  def changeset(%Box{} = box, %Participant{} = participant, attrs) do
     changeset(box, attrs)
     |> put_assoc(:participants, [participant])
   end
@@ -26,5 +26,10 @@ defmodule Api.Keeper.Box do
   def total(%Box{} = box) do
     box.participants
     |> Enum.reduce(0, fn p, acc -> acc + Participant.total_deposit(p) end)
+  end
+
+  def user_allowed?(%Box{} = box, %User{} = user) do
+    box.participants
+    |> Enum.any?(&(&1.user_id == user.id))
   end
 end

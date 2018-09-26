@@ -27,6 +27,10 @@ class Path {
   static participants() {
     return this.basePath() + "/participants"
   }
+
+  static showBox(box_id) {
+    return this.basePath() + "/boxes/" + box_id;
+  }
 }
 
 export { Path }

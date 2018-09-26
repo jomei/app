@@ -6,7 +6,9 @@ import {
   BOXES_LOADED,
   BOX_TITLE_CHANGED,
   BOX_CREATE,
-  BOX_CREATED
+  BOX_CREATED,
+  SHOW_BOX,
+  BOX_LOADED
 } from './kinds';
 
 const boxesLoaded = (dispatch, response) => {
@@ -54,4 +56,28 @@ export const createBox = (title) => {
 const boxCreated = (dispatch, response) => {
   dispatch({type: BOX_CREATED});
   Actions.home();
+};
+
+export const showBox = (box_id) => {
+  return(dispatch) => {
+    dispatch({type: SHOW_BOX, payload: {box: {id: box_id}}});
+    Actions.show_box()
+  }
+};
+
+export const loadBox = (box_id) => {
+  return (dispatch) => {
+    Fetch.get(Path.showBox(box_id))
+      .then(response => boxLoaded(dispatch, response))
+      .catch((error) => loadingFailed(dispatch, error));
+  }
+};
+
+
+const boxLoaded = (dispatch, response) => {
+  if(response.data) {
+    dispatch({action: BOX_LOADED, payload: response.data})
+  } else {
+    console.log(response.error)
+  }
 };

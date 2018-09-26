@@ -21,4 +21,11 @@ defmodule ApiWeb.BoxController do
       conn |> render("index.json", %{participants: Keeper.get_participants(user)})
     end
   end
+
+  def show(conn, %{"id" => box_id}) do
+    with user <- Guardian.Plug.current_resource(conn),
+         {:ok, box} <- Keeper.get_box!(box_id, user) do
+      conn |> render("show.json", %{box: box})
+    end
+  end
 end

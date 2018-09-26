@@ -1,31 +1,18 @@
 defmodule ApiWeb.BoxView do
   use ApiWeb, :view
 
-  alias ApiWeb.BoxView
+  alias ApiWeb.{BoxView, ParticipantView}
   alias Api.{Keeper.Box, Keeper.Participant}
-require IEx
+  require IEx
+
+  def render("show.json", params) do
+    %{data: render("box.json", params)}
+  end
+
   def render("box.json", %{box: box}) do
-    deposits = box.deposits
-               |> Enum.filter(&(&1.amount != 0))
-               |> Enum.map(&(ApiWeb.DepositView.render("show.json", %{deposit: &1})))
-    %{title: box.title, deposits: deposits}
-  end
-
-  def render("created.json", %{box: box}) do
-    %{data: %{id: box.id, title: box.title}}
-  end
-
-  def render("index.json", %{participants: participants}) do
-    %{data: render_many(participants, BoxView, "from_participant.json")}
-  end
-
-  def render("from_participant.json", %{box: p}) do
-    IEx.pry
     %{
-      id: p.box.id,
-      title: p.box.title,
-      total: Box.total(p.box),
-      user_debt: Participant.total_debt(p)
+      title: box.title,
+      participants: render_many(box.participants, ParticipantView, "participant.json")
     }
   end
 end

@@ -46,6 +46,17 @@ defmodule Api.Keeper do
     Participant.changeset(participant, %{})
   end
 
+  def get_box!(box_id, user) do
+    box = Box
+    |> Repo.get(box_id)
+    |> Repo.preload(participants: [deposits: [:debts], debts: [], box: []])
+
+    case Box.user_allowed?(box, user) do
+      true -> {:ok, box}
+      _ -> {:error, :unauthorized}
+    end
+  end
+
   defp create_box_with_participant(participant, attrs) do
     Multi.new
     |> Multi.insert(:box, Box.changeset(%Box{}, participant, attrs))

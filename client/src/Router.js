@@ -13,6 +13,7 @@ const RouterComponent = () => {
         <Scene key="sign_up" component={Registration} title="Register"/>
         <Scene key="home" component={Home}/>
         <Scene key="create_box" component={CreateBox}/>
+        <Scene key="show_box" component={CreateBox}/>
       </Stack>
     </Router>
   )

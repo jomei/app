@@ -12,10 +12,8 @@ defmodule ApiWeb.ParticipantView do
   def render("participant.json", %{participant: p}) do
     %{
       box: %{id: p.box.id, title: p.box.title, total: Box.total(p.box)},
-      participant: %{
-        debts: render_many(p.debts, DebtView, "show.json"),
-        deposits: render_many(p.deposits, DepositView, "show.json")
-      }
+      debts: render_many(p.debts, DebtView, "show.json"),
+      deposits: render_many(p.deposits, DepositView, "show.json")
     }
   end
 

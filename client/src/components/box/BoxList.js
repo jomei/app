@@ -9,7 +9,6 @@ import {Loading} from "../common";
 class BoxList extends Component {
 
   componentDidMount() {
-    console.log("start loading")
     this.props.loadBoxes()
   }
 
@@ -47,20 +46,28 @@ class BoxList extends Component {
 
   renderBox = (listItem) => {
     return(
-      <Text>{listItem.box.title} - {listItem.box.total} RUR</Text>
+      <TouchableHighlight onPress={() => this.onBoxItemPress(listItem)}>
+        <View>
+          <Text>{listItem.box.title} - {listItem.box.total} RUB</Text>
+        </View>
+      </TouchableHighlight>
     )
+  }
 
+  onBoxItemPress = (boxData, BoxID) => {
+
+  }
+
+  onLongBoxItemPress = (boxData, BoxID) => {
+    console.log("long click")
+    console.log(boxData)
+    console.log(BoxID)
   }
 }
 
 const dataSource = new ListView.DataSource({
   rowHasChanged: (r1, r2) => r1 !== r2
 });
-function mapStateToProps(state) {
-  return {
-    dataSource: dataSource.cloneWithRows(state.items)
-  };
-}
 
 
 const mapStateToProps = (state) => {
