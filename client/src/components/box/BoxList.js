@@ -52,10 +52,10 @@ class BoxList extends Component {
         </View>
       </TouchableHighlight>
     )
-  }
+  };
 
-  onBoxItemPress = (boxData, BoxID) => {
-
+  onBoxItemPress = (listItem) => {
+    this.props.loadBox(listItem.box.id)
   }
 
   onLongBoxItemPress = (boxData, BoxID) => {

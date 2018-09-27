@@ -1,5 +1,6 @@
 import { Actions } from 'react-native-router-flux';
 import { Path, Fetch } from '../utils'
+import DepositService from '../services/DepositService'
 
 import {
   BOXES_LOADING,
@@ -60,14 +61,14 @@ const boxCreated = (dispatch, response) => {
 
 export const showBox = (box_id) => {
   return(dispatch) => {
-    dispatch({type: SHOW_BOX, payload: {box: {id: box_id}}});
-    Actions.show_box()
+    dispatch({type: SHOW_BOX, payload: box_id});
+    Actions.showBox()
   }
 };
 
-export const loadBox = (box_id) => {
+export const loadBox = (boxId) => {
   return (dispatch) => {
-    Fetch.get(Path.showBox(box_id))
+    Fetch.get(Path.showBox(boxId))
       .then(response => boxLoaded(dispatch, response))
       .catch((error) => loadingFailed(dispatch, error));
   }
@@ -76,7 +77,10 @@ export const loadBox = (box_id) => {
 
 const boxLoaded = (dispatch, response) => {
   if(response.data) {
-    dispatch({action: BOX_LOADED, payload: response.data})
+    let box = response.data;
+    box.deposits = DepositService.parse(box.participants);
+    dispatch({type: BOX_LOADED, payload: box});
+    Actions.showBox();
   } else {
     console.log(response.error)
   }

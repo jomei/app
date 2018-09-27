@@ -1,6 +1,6 @@
 import {
   BOX_TITLE_CHANGED,
-  BOX_CREATE, BOX_CREATED
+  BOX_CREATE, BOX_CREATED,
 } from '../../actions/kinds';
 
 

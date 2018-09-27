@@ -7,10 +7,6 @@ import {Loading} from "../common";
 
 class ShowBox extends Component {
 
-  componentDidMount() {
-    this.props.loadBox(this.props.box.id);
-  }
-
   render() {
     if (this.props.loading) {
       return (
@@ -21,17 +17,18 @@ class ShowBox extends Component {
   }
 
   renderBox = () => {
-    const {title, participants, total} = this.props.box;
+
+    const {title, deposits, total} = this.props.box;
     return(
       <View>
-        <Text>{title}</Text>
+        <Text>{title} - {total} RUR</Text>
       </View>
     )
   }
 
 }
 const mapStateToProps = (state) => {
-  return state.createBox;
+  return state.showBox;
 };
 
 export default connect(mapStateToProps, actions)(ShowBox);

@@ -12,6 +12,7 @@ defmodule ApiWeb.BoxView do
   def render("box.json", %{box: box}) do
     %{
       title: box.title,
+      total: Box.total(box),
       participants: render_many(box.participants, ParticipantView, "participant.json")
     }
   end

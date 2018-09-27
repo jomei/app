@@ -4,6 +4,7 @@ import Registration from './screens/Registration'
 import Login from './screens/Login'
 import Home from './screens/Home'
 import CreateBox from './components/box/CreateBox'
+import ShowBox from './components/box/ShowBox'
 
 const RouterComponent = () => {
   return (
@@ -13,7 +14,7 @@ const RouterComponent = () => {
         <Scene key="sign_up" component={Registration} title="Register"/>
         <Scene key="home" component={Home}/>
         <Scene key="create_box" component={CreateBox}/>
-        <Scene key="show_box" component={CreateBox}/>
+        <Scene key="showBox" component={ShowBox}/>
       </Stack>
     </Router>
   )

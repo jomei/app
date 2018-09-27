@@ -11,14 +11,18 @@ defmodule ApiWeb.ParticipantView do
 
   def render("participant.json", %{participant: p}) do
     %{
-      box: %{id: p.box.id, title: p.box.title, total: Box.total(p.box)},
       debts: render_many(p.debts, DebtView, "show.json"),
       deposits: render_many(p.deposits, DepositView, "show.json")
     }
   end
 
+  def render("with_box.json", %{participant: p}) do
+    render("participant.json", %{participant: p})
+    |> Map.merge(%{box: %{id: p.box.id, title: p.box.title, total: Box.total(p.box)}})
+  end
+
   def render("index.json", %{participants: participants}) do
-    %{data: render_many(participants, ParticipantView, "participant.json")}
+    %{data: render_many(participants, ParticipantView, "with_box.json")}
   end
 
 end
