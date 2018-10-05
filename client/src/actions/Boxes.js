@@ -9,7 +9,7 @@ import {
   BOX_CREATE,
   BOX_CREATED,
   SHOW_BOX,
-  BOX_LOADED
+  BOX_LOADED, EMAIL_CHANGED,PARTICIPANT_CHANGED
 } from './kinds';
 
 const boxesLoaded = (dispatch, response) => {
@@ -83,5 +83,12 @@ const boxLoaded = (dispatch, response) => {
     Actions.showBox();
   } else {
     console.log(response.error)
+  }
+};
+
+export const participantChanged =(participant) => {
+  return {
+    type: PARTICIPANT_CHANGED,
+    payload: participant,
   }
 };

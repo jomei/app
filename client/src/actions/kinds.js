@@ -15,4 +15,8 @@ export const BOX_CREATE = 'box_create';
 export const BOX_CREATED = 'box_created';
 export const SHOW_BOX = 'show_box';
 export const BOX_LOADED = 'box_loaded';
+export const PARTICIPANT_CHANGED = 'participant_changed';
 
+// deposits
+
+export const DEPOSIT_AMOUNT_CHANGED = 'deposit_amount_changed';

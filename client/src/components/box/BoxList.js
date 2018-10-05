@@ -56,7 +56,7 @@ class BoxList extends Component {
 
   onBoxItemPress = (listItem) => {
     this.props.loadBox(listItem.box.id)
-  }
+  };
 
   onLongBoxItemPress = (boxData, BoxID) => {
     console.log("long click")

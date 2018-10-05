@@ -6,7 +6,8 @@ import {
 const INITIAL_STATE = {
   loading: true,
   error: null,
-  box: null
+  box: null,
+  participant: null
 };
 
 export default (state = INITIAL_STATE, action) => {
