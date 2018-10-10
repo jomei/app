@@ -5,7 +5,6 @@ import * as actions from '../../ducks/auth/signIn'
 
 class SignIn extends Component{
   render () {
-    console.log(this.props);
     const {email, password, emailChanged, passwordChanged, signInUser } = this.props;
     return(
       <View>
@@ -21,16 +20,20 @@ class SignIn extends Component{
         />
 
         <Button
-          onPress={signInUser}
+          onPress={this.onSignInPress}
           title="Sign In"
         />
       </View>
     )
   }
+
+  onSignInPress = () => {
+    const {email, password} = this.props;
+    this.props.signInUser(email, password)
+  }
 }
 
 const mapStateToProps = state => {
-  console.log(state)
   return state.signIn
 };
 

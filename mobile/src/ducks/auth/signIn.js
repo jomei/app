@@ -22,10 +22,10 @@ export const passwordChanged = (pwd) => {
   }
 };
 
-export const signInUser = (email, pwd) => {
+export const signInUser = (email, password) => {
   return {
     type: SIGN_IN_START,
-    payload: {email, pwd}
+    payload: {email, password}
   }
 };
 
@@ -34,7 +34,7 @@ export default (state = initialState, action = {}) => {
     case SIGN_IN_STARTED:
       return {...state, loading: true};
     case SIGN_IN_SUCCESS:
-      return {...state, loading: false};
+      return {...state, loading: false,};
     case SIGN_IN_FAILED:
       return {...state, loading: false, error: action.payload};
     case EMAIL_CHANGED:
