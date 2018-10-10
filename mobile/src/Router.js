@@ -1,14 +1,14 @@
 import React from 'react';
 import { Router, Scene, Stack } from 'react-native-router-flux';
 
-import SignIn from './components/auth/SignIn'
+import AuthScreen from './screens/AuthScreen'
 
 
 export default () => {
   return (
     <Router>
       <Stack>
-        <Scene key="signIn" initial={true} component={SignIn} title="SignIn"/>
+        <Scene key="auth" initial={true} component={AuthScreen} title="Auth"/>
       </Stack>
     </Router>
   )
