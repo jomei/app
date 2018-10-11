@@ -2,7 +2,7 @@ defmodule Api.Keeper.Participant do
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias Api.{Accounts.User, Keeper.Box, Keeper.Debt, Keeper.Deposit, Keeper.Participant}
+  alias Api.{Accounts.User, Keeper.Box, Keeper.Debt, Keeper.Deposit, Keeper.Participant, Keeper.Repayment}
 
 
   schema "participants" do
@@ -11,6 +11,8 @@ defmodule Api.Keeper.Participant do
 
     has_many :deposits, Deposit
     has_many :debts, Debt
+    has_many :repayments_from, Repayment
+    has_many :repayments_to, Repayment
 
     timestamps()
   end
@@ -24,12 +26,6 @@ defmodule Api.Keeper.Participant do
   def changeset(participant, user, attrs) do
     changeset(participant, attrs)
     |> put_assoc(:user, user)
-  end
-
-  def total_debt(%Participant{} = p)do
-    p.debts
-    |> Enum.map(&(&1.amount)) #todo: currency
-    |> Enum.reduce(0, fn debt, acc -> debt.amount + acc end)
   end
 
   def total_deposit(%Participant{} = p) do
