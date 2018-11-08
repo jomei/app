@@ -1,12 +1,11 @@
-defmodule Api.Keeper.Participant do
+defmodule Api.Keeper.Position do
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias Api.{Accounts.User, Keeper.Box, Keeper.Participant, Keeper.Position}
+  alias Api.{Keeper.Box, Keeper.Participant}
 
 
-  schema "participants" do
-    belongs_to :user, User
+  schema "positions" do
     belongs_to :box, Box
 
     timestamps()

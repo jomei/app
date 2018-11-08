@@ -3,7 +3,7 @@ defmodule Api.Keeper do
   import Ecto.Query, warn: false
   alias Api.Repo
 
-  alias Api.{Keeper.Participant, Keeper.Box, Keeper.Deposit, Keeper.Debt}
+  alias Api.{Keeper.Participant, Keeper.Box}
   alias Api.Accounts.User
 
   alias Ecto.Multi
@@ -14,7 +14,7 @@ defmodule Api.Keeper do
     user
     |> Ecto.assoc(:participants)
     |> Repo.all
-    |> Repo.preload(box: [participants: [deposits: [:debts], debts: []]], debts: [], deposits: [])
+#    |> Repo.preload(box: [participants: [deposits: [:debts], debts: []]], debts: [], deposits: [])
   end
 
   def create_box(%User{} = user, attrs \\ %{}) do
@@ -49,7 +49,7 @@ defmodule Api.Keeper do
   def get_box!(box_id, user) do
     box = Box
     |> Repo.get(box_id)
-    |> Repo.preload(participants: [deposits: [:debts], debts: [], box: []])
+#    |> Repo.preload(participants: [deposits: [:debts], debts: [], box: []])
 
     case Box.user_allowed?(box, user) do
       true -> {:ok, box}

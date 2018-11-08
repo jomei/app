@@ -9,6 +9,7 @@ defmodule Api.Keeper.Box do
     field :title, :string
 
     has_many :participants, Api.Keeper.Participant
+    has_many :positions, Api.Keeper.Position
     timestamps()
   end
 
