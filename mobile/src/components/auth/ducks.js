@@ -5,7 +5,6 @@ import { SIGN_IN_FAILED, SIGN_IN_STARTED, SIGN_IN_SUCCESS,
 export const SWITCH_FORMS = 'auth/switchForms';
 
 
-
 const initialState = {
   showSignIn: true,
   signIn: {},

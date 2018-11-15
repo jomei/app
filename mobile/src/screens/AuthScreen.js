@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { View } from 'react-native';
-import SignInForm from '../components/auth/signIn/Form'
+import Form from 'mobile/src/components/auth/signIn/Form'
+import SignUpForm from 'mobile/src/components/auth/signUp/Form'
+
 
 class AuthScreen extends Component {
   render() {
@@ -13,9 +15,10 @@ class AuthScreen extends Component {
   }
 
   renderForm = () => {
-    if(this.props.showSignIn) {
-      return(<SignInForm/>)
-    }
+
+    // if(this.props.showSignIn) {
+      return(<Form/>)
+    // }
   }
 }
 

@@ -1,5 +1,7 @@
 import { put, call, takeLatest } from 'redux-saga/effects'
-import { Api } from '../../../api'
+
+import { Api } from 'mobile/src/api'
+
 import { SIGN_IN_START, SIGN_IN_STARTED, SIGN_IN_SUCCESS, SIGN_IN_FAILED } from "./ducks";
 
 function* signInGenerator(action) {

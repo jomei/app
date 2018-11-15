@@ -1,28 +1,36 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { View, TextInput, Button } from 'react-native';
+import { View } from 'react-native';
+
+import { Input, Button, TextLink } from 'mobile/src/uiKit'
+import { switchForms } from 'mobile/src/components/auth/ducks'
+
 import { signInUser, emailChanged, passwordChanged } from './ducks'
 
 class Form extends Component{
   render () {
-    const {email, password, emailChanged, passwordChanged } = this.props;
+    const { email, password, emailChanged, passwordChanged, showSignUp } = this.props;
     return(
       <View>
-        <TextInput
-          onChangeText={emailChanged}
-          placeholder='email@example.com'
-          value={email}
-        />
-        <TextInput
-          onChangeText={passwordChanged}
-          secureTextEntry={true}
-          value={password}
+        <Input
+          onChangeText={ emailChanged }
+          placeholder='email'
+          value={ email }
         />
 
-        <Button
-          onPress={this.onSignInPress}
-          title="Sign In"
+        <Input
+          onChangeText={ passwordChanged }
+          secureTextEntry={ true }
+          placeholder='password'
+          value={ password }
         />
+
+        <Button onPress={ this.onSignInPress }>Sign In</Button>
+
+        <TextLink onPress={ showSignUp }>
+          Don't have an account? Register!
+        </TextLink>
+
       </View>
     )
   }
@@ -42,6 +50,7 @@ const mapDispatchToProps = dispatch => {
     emailChanged: (email) => { dispatch(emailChanged(email)) },
     passwordChanged: (pwd) => { dispatch(passwordChanged(pwd)) },
     signInUser: (email, password) => { dispatch(signInUser(email, password)) },
+    showSignUp: () => { dispatch(switchForms(true))}
   }
 
 };
