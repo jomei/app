@@ -8,7 +8,6 @@ export const SWITCH_FORMS = 'auth/switchForms';
 
 const initialState = {
   showSignIn: true,
-  user: {},
   signIn: {},
   signUp: {}
 };
