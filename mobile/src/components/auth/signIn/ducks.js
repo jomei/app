@@ -7,7 +7,9 @@ export const SIGN_IN_PASSWORD_CHANGED = 'auth/signIn/password_changed';
 
 const initialState = {
   loading: false,
-  error: null
+  error: null,
+  email: null,
+  password: null
 };
 
 

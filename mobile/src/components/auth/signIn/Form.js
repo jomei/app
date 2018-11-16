@@ -52,7 +52,6 @@ const mapDispatchToProps = dispatch => {
     signInUser: (email, password) => { dispatch(signInUser(email, password)) },
     showSignUp: () => { dispatch(switchForms(true))}
   }
-
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Form)

@@ -18,8 +18,8 @@ defmodule ApiWeb.Router do
   scope "/api/v1", ApiWeb do
     pipe_through :api
 
-    post "/sign_up", UserController, :create
-    post "/sign_in", UserController, :sign_in
+    post "/sign_up", AuthController, :sign_up
+    post "/sign_in", AuthController, :sign_in
   end
 
   scope "/api/v1", ApiWeb do

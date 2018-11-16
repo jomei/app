@@ -9,6 +9,16 @@ class Api {
       password: password
     })
   }
+
+  static signUp(email, password, passwordConfirmation) {
+    return axios.post(Path.signUp(), {
+      auth: {
+        email: email,
+        password: password,
+        password_confirmation: passwordConfirmation
+      }
+    })
+  }
 }
 
 export { Api }
