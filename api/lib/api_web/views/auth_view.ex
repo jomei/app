@@ -1,10 +1,10 @@
 defmodule ApiWeb.AuthView do
   use ApiWeb, :view
-  alias ApiWeb.AuthView
+  alias ApiWeb.{AuthView, UserView}
 
   def render("sign_up.json", %{user: user, token: token}) do
     %{
-      user: user,
+      user: render_one(user, UserView, "show.json"),
       token: token
     }
   end

@@ -7,9 +7,12 @@ defmodule ApiWeb.AuthController do
   alias Api.Accounts.User
   alias Api.Guardian
 
+  require IEx
+
   def sign_up(conn, %{"auth" => user_params}) do
     with {:ok, %User{} = user} <- Accounts.create_user(user_params),
          {:ok, token, _claims} <- Guardian.encode_and_sign(user) do
+
       conn |> render("sign_up.json", user: user, token: token)
     end
   end
