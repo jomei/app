@@ -3,6 +3,7 @@ import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import createSagaMiddleware from 'redux-saga'
 import logger from 'redux-logger';
+
 import rootReducer from './reducer';
 import rootSaga from './saga'
 
@@ -16,6 +17,7 @@ if (process.env.NODE_ENV === 'development') {
 const persistConfig = {
   key: 'root',
   storage,
+  blacklist: ['auth']
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

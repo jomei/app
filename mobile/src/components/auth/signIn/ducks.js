@@ -39,7 +39,7 @@ export default (state = initialState, action = {}) => {
     case SIGN_IN_STARTED:
       return {...state, loading: true};
     case SIGN_IN_SUCCESS:
-      return {...state, loading: false,};
+      return {...state, loading: false};
     case SIGN_IN_FAILED:
       return {...state, loading: false, error: action.payload};
     case SIGN_IN_EMAIL_CHANGED:

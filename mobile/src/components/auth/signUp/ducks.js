@@ -48,7 +48,7 @@ export default (state = initialState, action = {}) => {
     case SIGN_UP_STARTED:
       return {...state, loading: true};
     case SIGN_UP_SUCCESS:
-      return {...state, loading: false,};
+      return {...state, loading: false};
     case SIGN_UP_FAILED:
       return {...state, loading: false, error: action.payload};
     case SIGN_UP_EMAIL_CHANGED:
