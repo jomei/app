@@ -26,6 +26,12 @@ defmodule ApiWeb.AuthController do
     end
   end
 
+  def logout(conn, _) do
+    conn
+    |> Accounts.logout
+    |> render("logout.json")
+  end
+
   def current() do
 
   end

@@ -24,7 +24,7 @@ config :logger, :console,
 
 
 config :money,
-       default_currency: :RUR,
+       default_currency: :RUB,
        separator: ".",
        delimeter: ",",
        symbol: false,

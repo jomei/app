@@ -23,4 +23,27 @@ defmodule Api.Keeper.Participant do
     |> put_assoc(:user, user)
   end
 
+  def paid_positions(participant) do
+    participant.box.positions
+    |> Enum.filter(&(&1.paid_by == participant.id))
+  end
+
+  def paid_amount(participant) do
+    participant
+    |> paid_positions
+    |> Enum.reduce(Money.new(0), &(Money.add(&1, &2)))
+  end
+
+  def assignee_positions(participant) do
+    participant.box.positions
+    |> Enum.filter(&(&1.assigned_to == participant.id))
+  end
+
+  def assignee_amount(participant) do
+    participant
+    |> assignee_positions
+    |> Enum.reduce(Money.new(0), &(Money.add(&1, &2)))
+  end
+
+
 end

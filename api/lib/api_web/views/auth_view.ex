@@ -9,4 +9,8 @@ defmodule ApiWeb.AuthView do
     }
   end
 
+  def render("logout.json", _) do
+    %{status: :ok}
+  end
+
 end

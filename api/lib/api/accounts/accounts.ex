@@ -7,12 +7,6 @@ defmodule Api.Accounts do
   import Ecto.Query, warn: false
   import Comeonin.Bcrypt, only: [checkpw: 2, dummy_checkpw: 0]
 
-  require IEx
-
-  def list_users do
-    Repo.all(User)
-  end
-
   def get_user!(id), do: Repo.get!(User, id)
 
   def create_user(attrs \\ %{}) do
@@ -55,6 +49,11 @@ defmodule Api.Accounts do
       user ->
         {:ok, user}
     end
+  end
+
+  def logout(conn) do
+    conn
+    |> Guardian.Plug.sign_out()
   end
 
   defp email_password_auth(email, password) when is_binary(email) and is_binary(password) do

@@ -5,15 +5,10 @@ defmodule ApiWeb.BoxView do
   alias Api.{Keeper.Box, Keeper.Participant}
   require IEx
 
-  def render("show.json", params) do
-    %{data: render("box.json", params)}
-  end
-
-  def render("box.json", %{box: box}) do
+  def render("show.json", %{box: box}) do
     %{
       title: box.title,
       total: Box.total(box),
-      participants: render_many(box.participants, ParticipantView, "participant.json")
     }
   end
 end

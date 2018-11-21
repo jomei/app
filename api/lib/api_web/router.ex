@@ -20,6 +20,7 @@ defmodule ApiWeb.Router do
 
     post "/sign_up", AuthController, :sign_up
     post "/sign_in", AuthController, :sign_in
+    post "/logout", AuthController, :logout
   end
 
   scope "/api/v1", ApiWeb do
@@ -28,5 +29,6 @@ defmodule ApiWeb.Router do
     post "/get_user", UserController, :show
     resources "/boxes", BoxController
     resources "/participants", ParticipantController
+    get "/home", HomeController, :show
   end
 end
