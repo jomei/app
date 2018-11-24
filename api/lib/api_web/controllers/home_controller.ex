@@ -3,6 +3,8 @@ defmodule ApiWeb.HomeController do
 
   alias Api.{Keeper}
 
+  require IEx
+
   def show(conn, _) do
     with user <- Guardian.Plug.current_resource(conn),
          participants <- Keeper.get_participants(user) do

@@ -1,5 +1,5 @@
 import { createStore, applyMiddleware } from 'redux';
-import { persistStore, persistReducer } from 'redux-persist';
+import { persistStore, persistReducer, createMigrate } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import createSagaMiddleware from 'redux-saga'
 import logger from 'redux-logger';
@@ -14,10 +14,22 @@ if (process.env.NODE_ENV === 'development') {
   middlewares.push(logger);
 }
 
+// const migrations = {
+//   0: (state) => {
+//     return {
+//
+//     }
+//   },
+//   1: (state) => { return {}},
+//   2: (state) => { return {}},
+// };
+
 const persistConfig = {
   key: 'root',
   storage,
-  blacklist: ['auth']
+  version: 0,
+  whitelist: ['account'],
+  // migrate: createMigrate(migrations, { debug: false })
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

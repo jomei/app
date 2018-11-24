@@ -13,7 +13,7 @@ function* generator(action) {
       return Api.signIn(action.payload.email, action.payload.password)
     });
 
-    yield put({type: SIGN_IN_SUCCESS, payload: response});
+    yield put({type: SIGN_IN_SUCCESS, payload: response.data});
 
     yield call(() => {
       Actions.home()

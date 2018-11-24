@@ -5,8 +5,9 @@ import SignInForm from 'mobile/src/components/auth/signIn/Form'
 import SignUpForm from 'mobile/src/components/auth/signUp/Form'
 
 
-class AuthScreen extends Component {
+class Screen extends Component {
   render() {
+    console.log("hello")
     return(
       <View>
         {this.renderForm()}
@@ -27,4 +28,4 @@ const mapStateToProps = state => {
   return {showSignIn: state.auth.showSignIn}
 };
 
-export default connect(mapStateToProps, {})(AuthScreen)
+export default connect(mapStateToProps, {})(Screen)

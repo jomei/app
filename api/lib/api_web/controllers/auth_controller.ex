@@ -20,7 +20,7 @@ defmodule ApiWeb.AuthController do
   def sign_in(conn, %{"email" => email, "password" => password}) do
     case Accounts.token_sign_in(email, password) do
       {:ok, token, user} ->
-        conn |> render("auth.json", token: token)
+        conn |> render("auth.json", token: token, user: user)
       _ ->
         {:error, :unauthorized}
     end

@@ -10,10 +10,10 @@ function* generator(action) {
     yield put({type: SIGN_UP_STARTED});
 
     const response = yield call(() => {
-      return Api.signUp(action.payload.email, action.payload.password, action.payload.passwordConfirmation)
+      return  Api.signUp(action.payload.email, action.payload.password, action.payload.passwordConfirmation)
     });
 
-    yield put({type: SIGN_UP_SUCCESS, payload: response});
+    yield put({type: SIGN_UP_SUCCESS, payload: response.data});
 
     yield call(() => {
       Actions.home()
