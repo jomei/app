@@ -29,6 +29,11 @@ defmodule Api.Accounts do
     User.changeset(user, %{})
   end
 
+  def get_contacts(user) do
+    User
+    |> Repo.all
+  end
+
   def token_sign_in(email, password) do
     case email_password_auth(email, password) do
       {:ok, user} ->

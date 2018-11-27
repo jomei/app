@@ -12,7 +12,7 @@ export default (state = initialState, action = {}) => {
       return {...state, user: action.payload.user, token: action.payload.token};
     case HOME_LOADING_SUCCESS:
       const user = {...state.user, ...action.payload.user};
-      return {...state, user: user};
+      return {...state, user: user, contacts: action.payload.contacts};
     default:
       return state
   }
