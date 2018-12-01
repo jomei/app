@@ -14,9 +14,6 @@ class Path {
     return this.basePath() + "/sign_in"
   }
 
-  static getUser() {
-    return this.basePath() + "/get_user"
-  }
 
   static boxes() {
     return this.basePath() + "/boxes"
@@ -26,7 +23,7 @@ class Path {
     return this.basePath() + "/participants"
   }
 
-  static showBox(box_id) {
+  static box(box_id) {
     return this.basePath() + "/boxes/" + box_id;
   }
 

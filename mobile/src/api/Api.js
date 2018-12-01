@@ -26,6 +26,10 @@ class Api {
     return this._request('get', Path.home())
   }
 
+  static createBox(name, users) {
+    return this._request('post', Path.boxes(), {box: {name: name}, users: users} )
+  }
+
   static _request(method, url, body) {
     let config = {
       method: method,
@@ -39,7 +43,7 @@ class Api {
         Authorization: `Bearer ${token}`
       }
     }
-    console.log(config)
+
     return axios.request(config)
   }
 }

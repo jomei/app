@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { View, Text } from 'react-native';
 import {Actions} from 'react-native-router-flux';
 
-import {Loading} from 'mobile/src/uiKit'
+import {Button, Loading} from 'mobile/src/uiKit'
 import BoxList from 'mobile/src/components/participants/List'
 import ProfileCard from 'mobile/src/components/profile/Card'
 
@@ -25,8 +25,13 @@ class Screen extends Component {
       <View>
         <ProfileCard/>
         {/*<BoxList/>*/}
+        <Button onPress={}/>
       </View>
     )
+  }
+
+  onBoxCreatePress = () => {
+
   }
 }
 
