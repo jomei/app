@@ -5,10 +5,12 @@ defmodule ApiWeb.BoxController do
 
   alias Api.{Keeper, Keeper.Box, Accounts.User}
   require IEx
-  def create(conn, %{"box" => box_params}) do
+  def create(conn, %{"box" => box_params, "users" => users}) do
     with user <- Guardian.Plug.current_resource(conn),
-         {:ok, %{box: %Box{} = box}} <- Keeper.create_box(user, box_params) do
-      conn |> render("created.json", %{box: box})
+         {:ok, _} <- Keeper.create_box(user, box_params, users) do
+
+      IEx.pry
+      conn |> render("created.json")
     end
   end
 

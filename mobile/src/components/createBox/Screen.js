@@ -45,7 +45,7 @@ class Screen extends Component {
   };
 
   onCancelPress = () => {
-    Actions.back()
+    Actions.pop()
   }
 
 }

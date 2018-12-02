@@ -27,8 +27,10 @@ defmodule ApiWeb.Router do
     pipe_through [:api, :jwt_authenticated]
 
     post "/get_user", UserController, :show
+
+    get "/home", HomeController, :show
+
     resources "/boxes", BoxController
     resources "/participants", ParticipantController
-    get "/home", HomeController, :show
   end
 end

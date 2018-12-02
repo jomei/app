@@ -27,7 +27,7 @@ class Api {
   }
 
   static createBox(name, users) {
-    return this._request('post', Path.boxes(), {box: {name: name}, users: users} )
+    return this._request('post', Path.boxes(), {box: {title: name}, users: users} )
   }
 
   static _request(method, url, body) {

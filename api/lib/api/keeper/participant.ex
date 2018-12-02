@@ -9,12 +9,16 @@ defmodule Api.Keeper.Participant do
     belongs_to :user, User
     belongs_to :box, Box
 
+    field :is_admin, :boolean, default: false
+
     timestamps()
   end
 
   def changeset(participant, attrs) do
     participant
-    |> cast(attrs, [])
+    |> cast(attrs, [:user_id, :box_id])
+    |> assoc_constraint(:box)
+    |> assoc_constraint(:user)
     |> validate_required([])
   end
 

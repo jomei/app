@@ -25,13 +25,13 @@ class Screen extends Component {
       <View>
         <ProfileCard/>
         {/*<BoxList/>*/}
-        <Button onPress={}/>
+        <Button onPress={this.onBoxCreatePress}>Create Box</Button>
       </View>
     )
   }
 
   onBoxCreatePress = () => {
-
+    Actions.createBox()
   }
 }
 

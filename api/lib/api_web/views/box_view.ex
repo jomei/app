@@ -6,9 +6,18 @@ defmodule ApiWeb.BoxView do
   require IEx
 
   def render("show.json", %{box: box}) do
+    render("without_participants.json", %{box: box})
+    |> Map.put(:participants, render_many(box.participants, ParticipantView, "show.json"))
+  end
+
+  def render("without_participants.json", %{box: box}) do
     %{
       title: box.title,
       total: Box.total(box),
     }
+  end
+
+  def render("created.json", _) do
+    %{status: :ok}
   end
 end

@@ -6,7 +6,7 @@ defmodule ApiWeb.HomeView do
   def render("show.json", %{user: user, participants: participants}) do
     %{
       user: render_one(user, UserView, "show.json"),
-      participants: render_many(participants, ParticipantView, "show.json")
+      participants: render_many(participants, ParticipantView, "with_box.json")
     }
   end
 end

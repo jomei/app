@@ -19,18 +19,13 @@ defmodule Api.Keeper.Box do
     |> validate_required([:title])
   end
 
-  def changeset(%Box{} = box, %Participant{} = participant, attrs) do
-    changeset(box, attrs)
-    |> put_assoc(:participants, [participant])
-  end
-
-  def total(%Box{} = box) do
-    box.participants
-    |> Enum.reduce(0, fn p, acc -> acc + Participant.total_deposit(p) end)
-  end
-
   def user_allowed?(%Box{} = box, %User{} = user) do
     box.participants
     |> Enum.any?(&(&1.user_id == user.id))
+  end
+
+  def total(box) do
+    box.positions
+    |> Enum.reduce(Money.new(0), &(Money.add(&1, &2)))
   end
 end
