@@ -7,10 +7,10 @@ const initialState = {
   loading: false
 };
 
-export const createBox = (name) => {
+export const createBox = (title) => {
   return {
     type: BOX_CREATE_START,
-    payload: {name: name}
+    payload: {title: title}
   }
 };
 

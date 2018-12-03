@@ -22,7 +22,7 @@ class Screen extends Component {
         <Input
           onChangeText={ this.boxNameChanged }
           placeholder='box name'
-          value={ this.state.name }
+          value={ this.state.title }
         />
 
         <Button onPress={this.onCancelPress}>
@@ -36,12 +36,12 @@ class Screen extends Component {
     )
   }
 
-  boxNameChanged = (name) => {
-    this.setState({name: name})
+  boxNameChanged = (title) => {
+    this.setState({title: title})
   };
 
   onCreatePress = () => {
-    this.props.createBox(this.state.name)
+    this.props.createBox(this.state.title)
   };
 
   onCancelPress = () => {
@@ -58,7 +58,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    createBox: (name) => { dispatch(createBox(name)) }
+    createBox: (title) => { dispatch(createBox(title)) }
   }
 };
 

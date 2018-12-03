@@ -7,7 +7,7 @@ class Item extends Component {
 
     return(
       <View>
-
+        <Text>item.title</Text>
       </View>
     )
   }

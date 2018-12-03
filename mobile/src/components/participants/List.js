@@ -15,7 +15,7 @@ class List extends Component {
   }
 
   renderItem = (item) => {
-
+    return()
   }
 
 }

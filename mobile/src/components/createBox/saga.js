@@ -10,7 +10,7 @@ function* generator(action) {
   try {
     yield put({type: BOX_CREATE_STARTED});
 
-    const response =  yield call(() => { return Api.createBox(action.payload.name, []) });
+    const response =  yield call(() => { return Api.createBox(action.payload.title, []) });
 
     yield put({type: BOX_CREATE_SUCCESS, payload: response.data});
 
