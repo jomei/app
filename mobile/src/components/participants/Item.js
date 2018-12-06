@@ -1,13 +1,15 @@
 import React, {Component} from 'react'
-import {View, Text} from 'react-native'
+import {View, Text, TouchableOpacity} from 'react-native'
 
 class Item extends Component {
   render() {
-    const {item} = this.props;
+    const {item, onPress} = this.props;
 
     return(
       <View>
-        <Text>item.title</Text>
+        <TouchableOpacity onPress={() => {onPress(item)}}>
+          <Text>{item.title}</Text>
+        </TouchableOpacity>
       </View>
     )
   }

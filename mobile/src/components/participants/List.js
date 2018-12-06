@@ -1,6 +1,10 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux';
 import {FlatList} from 'react-native'
+import {Actions} from 'react-native-router-flux';
+
+import Item from './Item'
+
 
 class List extends Component {
 
@@ -15,7 +19,11 @@ class List extends Component {
   }
 
   renderItem = (item) => {
-    return()
+    return(<Item item={item} onPress={this.onItemPress}/>)
+  };
+
+  onItemPress = (item) => {
+    Actions.box({boxId: item.id})
   }
 
 }
@@ -26,4 +34,10 @@ const mapStateToProps = (state) => {
   }
 };
 
-export default connect(mapStateToProps, {})(List)
+const mapDispatchToProps = (dispatch) => {
+  return {
+    // showItem: (item) => dispatch(showItem(item))
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(List)
