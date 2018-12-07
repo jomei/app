@@ -16,6 +16,8 @@ export const loadBox = (id) => {
 
 export default (state = initialState, action = {}) => {
   switch (action.type) {
+    case BOX_LOADING_SUCCESS:
+      return {...state, box: action.payload};
     default:
       return state
   }
