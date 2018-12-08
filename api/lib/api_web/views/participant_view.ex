@@ -10,7 +10,7 @@ defmodule ApiWeb.ParticipantView do
     %{
       box: render_one(participant.box, BoxView, "without_participants.json"),
       paid_amount: Participant.paid_amount(participant),
-      assignee_amount: Participant.assignee_amount(participant)
+      assigned_amount: Participant.assigned_amount(participant)
     }
   end
 

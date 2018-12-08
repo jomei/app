@@ -38,14 +38,14 @@ defmodule Api.Keeper.Participant do
     |> Enum.reduce(Money.new(0), &(Money.add(&1, &2)))
   end
 
-  def assignee_positions(participant) do
+  def assigned_positions(participant) do
     participant.box.positions
     |> Enum.filter(&(&1.assigned_to == participant.id))
   end
 
-  def assignee_amount(participant) do
+  def assigned_amount(participant) do
     participant
-    |> assignee_positions
+    |> assigned_positions
     |> Enum.reduce(Money.new(0), &(Money.add(&1, &2)))
   end
 

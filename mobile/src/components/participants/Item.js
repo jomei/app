@@ -8,7 +8,9 @@ class Item extends Component {
     return(
       <View>
         <TouchableOpacity onPress={() => {onPress(item)}}>
-          <Text>{item.title}</Text>
+          <Text>{item.box.title}</Text>
+          <Text>{item.paid_amount.amount} {item.paid_amount.currency}</Text>
+          <Text>{item.assigned_amount.amount} {item.assigned_amount.currency}</Text>
         </TouchableOpacity>
       </View>
     )
@@ -17,6 +19,7 @@ class Item extends Component {
 
 const styles = {
   container: {},
+  row: {}
 
 };
 

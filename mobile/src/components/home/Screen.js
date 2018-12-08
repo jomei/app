@@ -24,7 +24,7 @@ class Screen extends Component {
     return (
       <View>
         <ProfileCard/>
-        {/*<BoxList/>*/}
+        <BoxList/>
         <Button onPress={this.onBoxCreatePress}>Create Box</Button>
       </View>
     )

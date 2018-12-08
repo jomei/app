@@ -19,7 +19,7 @@ class List extends Component {
   }
 
   renderItem = (item) => {
-    return(<Item item={item} onPress={this.onItemPress}/>)
+    return(<Item item={item.item} onPress={this.onItemPress}/>)
   };
 
   onItemPress = (item) => {

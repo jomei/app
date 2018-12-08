@@ -13,7 +13,7 @@ export const showItem = (item) => {
 export default (state = initialState, action = {}) => {
   switch (action.type) {
     case HOME_LOADING_SUCCESS:
-      return {...state, list: action.participants};
+      return {...state, list: action.payload.participants};
     default:
       return state
   }
