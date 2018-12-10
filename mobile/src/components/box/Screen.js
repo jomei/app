@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
+import {View, Text} from 'react-native'
 
 import {Loading} from 'mobile/src/uiKit';
 
@@ -12,11 +13,22 @@ class Screen extends Component {
   }
 
   render() {
-    const {loading} = this.props;
+    const {loading, box} = this.props;
 
     if(loading) {
       return(<Loading/>)
     }
+
+    return(
+      <View>
+        <View>
+          <Text>{box.title}</Text>
+          <Text>{box.total}</Text>
+          <Text>{box.created_at}</Text>
+        </View>
+
+      </View>
+    )
   }
 }
 

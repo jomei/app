@@ -6,12 +6,14 @@ import {TextLink} from "mobile/src/uiKit"
 
 class Card extends Component {
   render() {
-    const {container, email} = styles;
+    const {container, email, header, headerLink} = styles;
     const {user} = this.props;
     return (
       <View style={container}>
-        <TextLink>Settings</TextLink>
-        <TextLink>Contacts</TextLink>
+        <View style={header}>
+          <TextLink>Settings</TextLink>
+          <TextLink>Contacts</TextLink>
+        </View>
         <View style={email}>
           <Text>{user.email}</Text>
         </View>
@@ -21,7 +23,16 @@ class Card extends Component {
 }
 
 const styles = {
-  container: {},
+  container: {
+    height: 80,
+    padding: 10
+  },
+  header: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
+  headerLink: {},
   email: {}
 };
 
