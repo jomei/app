@@ -23,10 +23,6 @@ defmodule Api.Keeper do
     |> Multi.merge(fn %{box: box} ->
       box_related_multi(box.id, current_user.id)
     end)
-#    |> Multi.insert(:participants, fn attrs ->
-#      IEx.pry
-##      %Participant{is_admin: true, box_id: box.id, user_id: current_user.id}
-#    end)
     |> Repo.transaction()
   end
 
@@ -36,11 +32,6 @@ defmodule Api.Keeper do
   end
 
   def get_participant!(id), do: Repo.get!(Participant, id)
-
-  def create_participant_multi(attrs) do
-    Multi.new
-    |> Multi.insert(:participant, Participant.changeset(%Participant{}, attrs))
-  end
 
   def update_participant(%Participant{} = participant, attrs) do
     participant
@@ -59,16 +50,11 @@ defmodule Api.Keeper do
   def get_box!(box_id, user) do
     box = Box
     |> Repo.get(box_id)
-#    |> Repo.preload(participants: [deposits: [:debts], debts: [], box: []])
+    |> Repo.preload(participants: [:user], positions: [])
 
     case Box.user_allowed?(box, user) do
       true -> {:ok, box}
       _ -> {:error, :unauthorized}
     end
-  end
-
-  defp create_box_with_participant(participant, attrs) do
-    Multi.new
-    |> Multi.insert(:box, Box.changeset(%Box{}, Map.put(attrs, :participants, [participant])))
   end
 end

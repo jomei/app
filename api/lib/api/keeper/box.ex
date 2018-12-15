@@ -24,8 +24,8 @@ defmodule Api.Keeper.Box do
     |> Enum.any?(&(&1.user_id == user.id))
   end
 
-  def total(box) do
-    box.positions
+  def total(positions) do
+    positions
     |> Enum.reduce(Money.new(0), &(Money.add(&1, &2)))
   end
 end

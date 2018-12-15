@@ -1,23 +1,21 @@
 defmodule ApiWeb.ParticipantView do
   use ApiWeb, :view
 
-  alias ApiWeb.{ParticipantView, BoxView}
+  alias ApiWeb.{ParticipantView, BoxView, UserView}
   alias Api.{Keeper.Box, Keeper.Participant}
   require IEx
 
+  def render("show.json", %{participant: p, positions: positions, box: box, user: user}) do
+    render(ParticipantView, "without_box.json", %{participant: p, positions: positions, user: user})
+    |> Map.put(:box, render(BoxView, "without_participants.json", %{box: box, positions: positions}))
+  end
 
-  def render("with_box.json", %{participant: participant}) do
+  def render("without_box.json", %{participant: p, positions: positions, user: user}) do
     %{
-      box: render_one(participant.box, BoxView, "without_participants.json"),
-      paid_amount: Participant.paid_amount(participant),
-      assigned_amount: Participant.assigned_amount(participant)
+      paid_amount: Participant.paid_amount(p, positions),
+      assigned_amount: Participant.assigned_amount(p, positions),
+      user: render_one(user, UserView, "show.json")
     }
   end
-
-  def render("without_box.json", %{participant: participant}) do
-
-
-  end
-
 
 end

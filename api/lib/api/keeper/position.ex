@@ -6,6 +6,7 @@ defmodule Api.Keeper.Position do
 
 
   schema "positions" do
+    field :title, :string
     field :paid_by, :integer
     field :assigned_to, :integer
     field :amount, Money.Ecto.Type

@@ -6,7 +6,11 @@ defmodule ApiWeb.HomeView do
   def render("show.json", %{user: user, participants: participants}) do
     %{
       user: render_one(user, UserView, "show.json"),
-      participants: render_many(participants, ParticipantView, "with_box.json")
+      participants: Enum.map(
+        participants, fn p ->
+          render(ParticipantView, "show.json", %{participant: p, positions: p.box.positions, box: p.box, user: user})
+        end
+      )
     }
   end
 end
