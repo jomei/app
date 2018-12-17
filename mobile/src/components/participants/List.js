@@ -36,7 +36,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    // showItem: (item) => dispatch(showItem(item))
   }
 };
 

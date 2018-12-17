@@ -1,5 +1,11 @@
 import { createSelector } from 'reselect'
 
-const _getToken = (state) => state.account.token;
+const getPositions = (state) => state.box.positions;
+const getParticipants = (state) => state.box.participants;
+const getUser = (state) => state.account.user;
 
-export const getToken = createSelector([_getToken], (token) => token);
+export const getMyParticipant = createSelector(
+  [getParticipants],
+  (participants) => participants.find((p) => { return p.user.id === getUser().id })
+);
+

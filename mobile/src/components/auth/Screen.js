@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { View } from 'react-native';
+
 import SignInForm from 'mobile/src/components/auth/signIn/Form'
 import SignUpForm from 'mobile/src/components/auth/signUp/Form'
 
 
 class Screen extends Component {
   render() {
-    console.log("hello")
     return(
       <View>
         {this.renderForm()}

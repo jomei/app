@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux';
+import { connect } from 'react-redux'
 import {View, Text} from 'react-native'
 
-import {Loading} from 'mobile/src/uiKit';
+import {Loading} from 'mobile/src/uiKit'
 
 import {loadBox} from "./ducks";
 
@@ -26,13 +26,16 @@ class Screen extends Component {
           <Text>{box.total}</Text>
           <Text>{box.created_at}</Text>
         </View>
-
       </View>
     )
   }
 }
 
-const mapStateToProps = (state) => {};
+const styles = {};
+
+const mapStateToProps = (state) => {
+  return state.box
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {

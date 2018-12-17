@@ -3,7 +3,7 @@ class Path {
   static VERSION1_PREFIX = '/v1';
 
   static basePath() {
-    return 'http://cb2a7870.ngrok.io' + this.API_PREFIX + this.VERSION1_PREFIX;
+    return 'http://f6a48290.ngrok.io' + this.API_PREFIX + this.VERSION1_PREFIX;
   };
 
   static signUp() {
