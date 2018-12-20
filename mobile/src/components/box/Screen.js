@@ -2,9 +2,10 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import {View, Text} from 'react-native'
 
-import {Loading} from 'mobile/src/uiKit'
+import {Loading, Button} from 'mobile/src/uiKit'
 
 import {loadBox} from "./ducks";
+import PositionsList from 'PositionsList'
 
 class Screen extends Component {
 
@@ -26,6 +27,10 @@ class Screen extends Component {
           <Text>{box.total}</Text>
           <Text>{box.created_at}</Text>
         </View>
+        <PositionsList/>
+        <Button>
+          Create Position
+        </Button>
       </View>
     )
   }
