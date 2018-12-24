@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import {View, Text} from 'react-native'
+import {Actions} from 'react-native-router-flux';
 
 import {Loading, Button} from 'mobile/src/uiKit'
 
-import {loadBox} from "./ducks";
+import {loadBox, createPosition} from "./ducks";
 import PositionsList from 'PositionsList'
 
 class Screen extends Component {
@@ -28,11 +29,15 @@ class Screen extends Component {
           <Text>{box.created_at}</Text>
         </View>
         <PositionsList/>
-        <Button>
+        <Button onPress={this.onCreatePositionPress}>
           Create Position
         </Button>
       </View>
     )
+  };
+
+  onCreatePositionPress = () => {
+    Actions.createPosition({createPosition: createPosition})
   }
 }
 

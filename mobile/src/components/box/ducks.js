@@ -8,6 +8,11 @@ export const POSITION_SELECT_STARTED = 'position/select/started';
 export const POSITION_SELECT_SUCCESS = 'position/select/success';
 export const POSITION_SELECT_FAILED = 'position/select/failed';
 
+export const POSITION_CREATE_START = 'position/create/start';
+export const POSITION_CREATE_STARTED = 'position/create/started';
+export const POSITION_CREATE_SUCCESS = 'position/create/success';
+export const POSITION_CREATE_FAILED = 'position/create/failed';
+
 const initialState = {
   loading: true,
   box: null
@@ -27,6 +32,13 @@ export const selectPosition = (participant, position) => {
       participantId: participant.id,
       positionId: position.id
     }
+  }
+};
+
+export const createPosition = (position) => {
+  return {
+    type: POSITION_CREATE_START,
+    payload: position
   }
 };
 
