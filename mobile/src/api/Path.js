@@ -6,30 +6,19 @@ class Path {
     return 'http://f6a48290.ngrok.io' + this.API_PREFIX + this.VERSION1_PREFIX;
   };
 
-  static signUp() {
-    return this.basePath() + "/sign_up"
-  };
+  static signUp() { return this.basePath() + "/sign_up" }
 
-  static signIn() {
-    return this.basePath() + "/sign_in"
-  }
+  static signIn() { return this.basePath() + "/sign_in" }
 
+  static boxes() { return this.basePath() + "/boxes" }
 
-  static boxes() {
-    return this.basePath() + "/boxes"
-  }
+  static positions() { return this.basePath() + "/positions" }
 
-  static participants() {
-    return this.basePath() + "/participants"
-  }
+  static participants() { return this.basePath() + "/participants" }
 
-  static box(box_id) {
-    return this.basePath() + "/boxes/" + box_id;
-  }
+  static box(box_id) { return this.basePath() + "/boxes/" + box_id }
 
-  static home() {
-    return this.basePath() + "/home"
-  }
+  static home() { return this.basePath() + "/home" }
 }
 
 export default Path

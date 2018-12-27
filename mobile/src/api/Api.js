@@ -34,6 +34,10 @@ class Api {
     return this._request('get', Path.boxes(), {id: boxId})
   }
 
+  static createPosition(position) {
+    return this._request('post', Path.positions(), position)
+  }
+
   static _request(method, url, body) {
     let config = {
       method: method,
