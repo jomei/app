@@ -4,6 +4,7 @@ import {View, Text} from 'react-native'
 import {Actions} from 'react-native-router-flux';
 
 import {Loading, Button} from 'mobile/src/uiKit'
+import {getMyParticipant} from "mobile/src/selectors";
 
 import {loadBox, createPosition} from "./ducks";
 import PositionsList from 'PositionsList'
@@ -15,7 +16,7 @@ class Screen extends Component {
   }
 
   render() {
-    const {loading, box} = this.props;
+    const {loading, box, myParticipant} = this.props;
 
     if(loading) {
       return(<Loading/>)
@@ -37,14 +38,22 @@ class Screen extends Component {
   };
 
   onCreatePositionPress = () => {
-    Actions.createPosition({createPosition: createPosition})
+    const {box, myParticipant} = this.props;
+
+    Actions.createPosition({
+      createPosition: (position) => { createPosition(position, myParticipant, box ) }
+    })
   }
+
 }
 
 const styles = {};
 
 const mapStateToProps = (state) => {
-  return state.box
+  return {
+    box: state.box,
+    myParticipant: getMyParticipant(state)
+  }
 };
 
 const mapDispatchToProps = (dispatch) => {

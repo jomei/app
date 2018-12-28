@@ -32,5 +32,6 @@ defmodule ApiWeb.Router do
 
     resources "/boxes", BoxController
     resources "/participants", ParticipantController
+    resources "/positions", PositionController
   end
 end

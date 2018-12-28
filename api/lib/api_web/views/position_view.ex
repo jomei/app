@@ -3,6 +3,7 @@ defmodule ApiWeb.PositionView do
 
   def render("show.json", %{position: p}) do
     %{
+      id: p.id,
       title: p.title,
       paid_by: p.paid_by,
       assigned_to: p.assigned_to,

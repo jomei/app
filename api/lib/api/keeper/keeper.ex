@@ -3,7 +3,7 @@ defmodule Api.Keeper do
   import Ecto.Query, warn: false
   alias Api.Repo
 
-  alias Api.{Keeper.Participant, Keeper.Box}
+  alias Api.{Keeper.Participant, Keeper.Box, Keeper.Position}
   alias Api.Accounts.User
 
   alias Ecto.Multi
@@ -56,5 +56,11 @@ defmodule Api.Keeper do
       true -> {:ok, box}
       _ -> {:error, :unauthorized}
     end
+  end
+
+  def create_position(position) do
+    position
+    |> Position.changeset
+    |> Repo.insert
   end
 end

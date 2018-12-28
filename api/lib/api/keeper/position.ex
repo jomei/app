@@ -18,12 +18,7 @@ defmodule Api.Keeper.Position do
   def changeset(participant, attrs) do
     participant
     |> cast(attrs, [])
-    |> validate_required([])
-  end
-
-  def changeset(participant, user, attrs) do
-    changeset(participant, attrs)
-    |> put_assoc(:user, user)
+    |> validate_required([:title, :amount])
   end
 
 end

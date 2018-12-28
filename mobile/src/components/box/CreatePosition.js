@@ -15,8 +15,8 @@ class CreatePosition extends Component {
     return(
       <View>
         <Input
-          onChangeText={ this.onNameChange }
-          placeholder='name'
+          onChangeText={ this.onTitleChange }
+          placeholder='title'
           value={ this.state.name }
         />
         <Input
@@ -32,8 +32,8 @@ class CreatePosition extends Component {
     )
   };
 
-  onNameChange = (name) => {
-    this.setState({...this.state, name: name})
+  onTitleChange = (title) => {
+    this.setState({...this.state, title: title})
   };
 
   onAmountChange = (amount) => {

@@ -35,7 +35,7 @@ class Api {
   }
 
   static createPosition(position) {
-    return this._request('post', Path.positions(), position)
+    return this._request('post', Path.positions(),{position: position} )
   }
 
   static _request(method, url, body) {
@@ -44,6 +44,7 @@ class Api {
       url: url,
       data: body
     };
+
     const token = store.getState().account.token;
 
     if(token) {
