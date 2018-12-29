@@ -14,7 +14,8 @@ defmodule ApiWeb.ParticipantView do
     %{
       paid_amount: Participant.paid_amount(p, positions),
       assigned_amount: Participant.assigned_amount(p, positions),
-      user: render_one(user, UserView, "show.json")
+      user: render_one(user, UserView, "show.json"),
+      is_admin: p.is_admin
     }
   end
 

@@ -7,7 +7,8 @@ defmodule ApiWeb.PositionView do
       title: p.title,
       paid_by: p.paid_by,
       assigned_to: p.assigned_to,
-      amount: p.amount
+      amount: p.amount,
+      is_paid: p.is_paid
     }
   end
 end
