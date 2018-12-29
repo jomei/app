@@ -34,8 +34,22 @@ class Api {
     return this._request('get', Path.boxes(), {id: boxId})
   }
 
-  static createPosition(position) {
-    return this._request('post', Path.positions(),{position: position} )
+  static createPosition(data) {
+    const body = {
+      paid_by: data.participantId,
+      title: data.title,
+      amount: data.amount
+    };
+
+    return this._request('post', Path.positions(),{position: body} )
+  }
+
+  static selectPosition(data) {
+    const body = {
+      assigned_to: data.participantId,
+    };
+
+    return this._request('put', Path.position(data.positionId),)
   }
 
   static _request(method, url, body) {

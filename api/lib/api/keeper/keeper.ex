@@ -5,6 +5,7 @@ defmodule Api.Keeper do
 
   alias Api.{Keeper.Participant, Keeper.Box, Keeper.Position}
   alias Api.Accounts.User
+  alias Ecto.Changeset
 
   alias Ecto.Multi
 
@@ -32,6 +33,8 @@ defmodule Api.Keeper do
   end
 
   def get_participant!(id), do: Repo.get!(Participant, id)
+
+  def get_position!(id), do: Repo.get(Position, id)
 
   def update_participant(%Participant{} = participant, attrs) do
     participant
@@ -62,5 +65,13 @@ defmodule Api.Keeper do
     position
     |> Position.changeset
     |> Repo.insert
+  end
+
+  def assign_position(position, assigned_to) do
+    value = if position.assigned_to == assigned_to, do: nil, else: assigned_to
+
+    position
+    |> Changeset.change(%{assigned_to: value})
+    |> Repo.update
   end
 end

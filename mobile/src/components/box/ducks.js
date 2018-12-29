@@ -25,7 +25,7 @@ export const loadBox = (id) => {
   }
 };
 
-export const selectPosition = (participant, position) => {
+export const selectPosition = (position, participant) => {
   return {
     type: POSITION_SELECT_START,
     payload: {
@@ -35,10 +35,10 @@ export const selectPosition = (participant, position) => {
   }
 };
 
-export const createPosition = (position, paidBy, box) => {
+export const createPosition = (position, participant, box) => {
   return {
     type: POSITION_CREATE_START,
-    payload: {...position, paid_by: paidBy.id, box_id: box.id}
+    payload: {...position, participantId: participant.id, box_id: box.id}
   }
 };
 

@@ -1,19 +1,15 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux';
-import {View, FlatList, Text} from 'react-native'
-
-import {getMyParticipant} from "mobile/src/selectors";
+import {View, FlatList} from 'react-native'
 
 import Item from './PositionItem'
-import {selectPosition} from "./ducks";
 
 class PositionsList extends Component {
   render() {
-    const {list} = this.props;
+    const {positions} = this.props;
     return(
       <View>
         <FlatList
-          data={list}
+          data={positions}
           renderItem={this.renderItem}
         />
       </View>
@@ -21,25 +17,9 @@ class PositionsList extends Component {
   }
 
   renderItem = (item) => {
-    return(<Item item={item.item} onPress={this.onItemPress}/>)
+    return(<Item item={item.item} onPress={this.props.onItemPress}/>)
   };
-
-  onItemPress = (position) => {
-    this.props.selectPosition(getMyParticipant(), position)
-  }
 }
 
-const mapStateToProps = state => {
-  return {
-    list: state.box.positions,
-    participants: state.box.participants
-  }
-};
 
-const mapDispatchToProps = dispatch => {
-  return {
-    selectPosition: (participant, position) => {dispatch(selectPosition(participant, position))}
-  }
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(PositionsList)
+export default PositionsList

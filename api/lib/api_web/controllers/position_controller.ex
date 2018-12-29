@@ -6,18 +6,15 @@ defmodule ApiWeb.PositionController do
   alias Api.{Keeper, Keeper.Box, Accounts.User}
 
   def create(conn, %{"position" => position_params}) do
-    with user <- Guardian.Plug.current_resource(conn)
-         {:ok, position} <- Keeper.create_position(position_params) do
-
+    with {:ok, position} <- Keeper.create_position(position_params) do
       conn |> render("show.json", %{position: position})
     end
   end
 
-
-  def show(conn, %{"id" => box_id}) do
-    with user <- Guardian.Plug.current_resource(conn),
-         {:ok, box} <- Keeper.get_box!(box_id, user) do
-      conn |> render("show.json", %{box: box, position: box.positions, participants: box.participants})
+  def update(conn, %{"id" => position_id, "assigned_to" => assigned_to_id}) do
+    with {:ok, p} <- Keeper.get_position!(position_id),
+         {:ok, position} <- Keeper.assign_position(p, assigned_to_id) do
+      conn |> render("show.json", %{position: position})
     end
   end
 end

@@ -6,7 +6,7 @@ import {Actions} from 'react-native-router-flux';
 import {Loading, Button} from 'mobile/src/uiKit'
 import {getMyParticipant} from "mobile/src/selectors";
 
-import {loadBox, createPosition} from "./ducks";
+import {loadBox, createPosition, selectPosition} from "./ducks";
 import PositionsList from 'PositionsList'
 
 class Screen extends Component {
@@ -16,7 +16,7 @@ class Screen extends Component {
   }
 
   render() {
-    const {loading, box, myParticipant} = this.props;
+    const {loading, box, positions, myParticipant, selectPosition} = this.props;
 
     if(loading) {
       return(<Loading/>)
@@ -29,8 +29,10 @@ class Screen extends Component {
           <Text>{box.total}</Text>
           <Text>{box.created_at}</Text>
         </View>
-        <PositionsList/>
-        <Button onPress={this.onCreatePositionPress}>
+
+        <PositionsList positions={positions} onItemPress={(position) => {selectPosition(position, myParticipant )} }/>
+
+        <Button onPress={this.onCreatePositionPress} >
           Create Position
         </Button>
       </View>
@@ -43,8 +45,7 @@ class Screen extends Component {
     Actions.createPosition({
       createPosition: (position) => { createPosition(position, myParticipant, box ) }
     })
-  }
-
+  };
 }
 
 const styles = {};
@@ -52,13 +53,15 @@ const styles = {};
 const mapStateToProps = (state) => {
   return {
     box: state.box,
-    myParticipant: getMyParticipant(state)
+    myParticipant: getMyParticipant(state),
+    positions: state.box.positions
   }
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    loadData: (id) => { dispatch(loadBox(id)) }
+    loadData: (id) => { dispatch(loadBox(id)) },
+    selectPosition: (position) => { dispatch(selectPosition(position)) }
   }
 };
 
