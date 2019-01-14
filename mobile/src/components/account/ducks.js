@@ -1,6 +1,7 @@
 import {SIGN_UP_SUCCESS} from "mobile/src/components/auth/signUp/ducks";
 import {SIGN_IN_SUCCESS} from "mobile/src/components/auth/signIn/ducks";
-import {HOME_LOADING_SUCCESS} from "mobile/src/components/home/ducks";
+import {HOME_LOADING_FAILED, HOME_LOADING_SUCCESS} from "mobile/src/components/home/ducks";
+
 
 const initialState = {
 };
@@ -13,6 +14,8 @@ export default (state = initialState, action = {}) => {
     case HOME_LOADING_SUCCESS:
       const user = {...state.user, ...action.payload.user};
       return {...state, user: user, contacts: action.payload.contacts};
+    case HOME_LOADING_FAILED:
+      return {...state, token: null};
     default:
       return state
   }

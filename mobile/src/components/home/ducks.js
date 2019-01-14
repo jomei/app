@@ -14,7 +14,6 @@ export const startLoading = () => {
 };
 
 
-
 export default (state = initialState, action = {}) => {
   switch (action.type) {
     case HOME_LOADING_STARTED:
