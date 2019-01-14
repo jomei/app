@@ -7,7 +7,7 @@ import {Loading, Button} from 'mobile/src/uiKit'
 import {getMyParticipant} from "mobile/src/selectors";
 
 import {loadBox, createPosition, selectPosition} from "./ducks";
-import PositionsList from 'PositionsList'
+import PositionsList from './PositionsList'
 
 class Screen extends Component {
 
@@ -30,7 +30,7 @@ class Screen extends Component {
           <Text>{box.created_at}</Text>
         </View>
 
-        <PositionsList positions={positions} onItemPress={(position) => {selectPosition(position, myParticipant )} }/>
+        <PositionsList positions={positions} participant={myParticipant} onItemPress={(position) => {selectPosition(position, myParticipant )} }/>
 
         <Button onPress={this.onCreatePositionPress} >
           Create Position

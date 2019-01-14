@@ -17,7 +17,7 @@ class PositionsList extends Component {
   }
 
   renderItem = (item) => {
-    return(<Item item={item.item} onPress={this.props.onItemPress}/>)
+    return(<Item item={item.item} participant={this.props.participant} onPress={this.props.onItemPress}/>)
   };
 }
 
