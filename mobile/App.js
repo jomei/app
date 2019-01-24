@@ -34,7 +34,7 @@ export default class App extends Component {
           <Router/>
         </PersistGate>
       </Provider>
-    );
+    );android/build.gradle
   }
 }
 
