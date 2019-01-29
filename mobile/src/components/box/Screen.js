@@ -4,21 +4,17 @@ import {View, Text} from 'react-native'
 import {Actions} from 'react-native-router-flux';
 
 import {Loading, Button} from 'mobile/src/uiKit'
-import {getMyParticipant} from "mobile/src/selectors";
 
 import {loadBox, createPosition, selectPosition} from "./ducks";
 import PositionsList from './PositionsList'
 
 class Screen extends Component {
 
-  componentDidMount() {
-    this.props.loadData(this.props.boxId)
-  }
-
   render() {
     const {loading, box, positions, myParticipant, selectPosition} = this.props;
 
     if(loading) {
+      this.props.loadData(this.props.boxId);
       return(<Loading/>)
     }
 
@@ -51,11 +47,7 @@ class Screen extends Component {
 const styles = {};
 
 const mapStateToProps = (state) => {
-  return {
-    box: state.box,
-    myParticipant: getMyParticipant(state),
-    positions: state.box.positions
-  }
+  return state.box
 };
 
 const mapDispatchToProps = (dispatch) => {

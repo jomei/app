@@ -5,3 +5,7 @@ rm -rf $TMPDIR/react-*; rm -rf $TMPDIR/haste-*; rm -rf $TMPDIR/metro-*; watchman
 react-native start  --reset-cache
 
 # Now run `react-native run-android` or `react-native run-ios`
+
+/Users/anatolynosov/Library/Android/sdk/emulator
+yarn run metro
+./emulator -avd Nexus_5X_API_28_x86

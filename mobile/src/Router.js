@@ -5,7 +5,7 @@ import Auth from 'mobile/src/components/auth/Screen'
 import Guard from 'mobile/src/components/auth/Guard'
 import Home from 'mobile/src/components/home/Screen'
 import CreateBox from 'mobile/src/components/createBox/Screen'
-import Screen from 'mobile/src/components/box/Screen'
+import BoxScreen from 'mobile/src/components/box/Screen'
 import CreatePosition from 'mobile/src/components/box/CreatePosition'
 
 
@@ -17,7 +17,7 @@ export default () => {
         <Scene key='auth' component={Auth} />
         <Scene key='home' component={Home} />
         <Scene key='createBox' component={CreateBox}/>
-        <Scene key='box' component={Screen}/>
+        <Scene key='box' component={BoxScreen}/>
         <Scene key='createPosition' component={CreatePosition}/>
       </Stack>
     </Router>

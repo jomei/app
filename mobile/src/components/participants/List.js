@@ -23,7 +23,7 @@ class List extends Component {
   };
 
   onItemPress = (item) => {
-    Actions.box()
+    Actions.box({boxId: item.box.id})
   }
 
 }
