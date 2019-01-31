@@ -1,9 +1,11 @@
+import config from 'mobile/src/config'
+
 class Path {
   static API_PREFIX = '/api';
   static VERSION1_PREFIX = '/v1';
 
   static basePath() {
-    return 'http://10.0.0.79:4000' + this.API_PREFIX + this.VERSION1_PREFIX;
+    return config.endpoint + this.API_PREFIX + this.VERSION1_PREFIX;
   };
 
   static signUp() { return this.basePath() + "/sign_up" }
