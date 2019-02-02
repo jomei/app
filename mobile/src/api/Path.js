@@ -5,6 +5,7 @@ class Path {
   static VERSION1_PREFIX = '/v1';
 
   static basePath() {
+    console.log(config)
     return config.endpoint + this.API_PREFIX + this.VERSION1_PREFIX;
   };
 
