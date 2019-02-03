@@ -1,21 +1,25 @@
-import {JimRaynor} from "./constants";
+import db from "./db";
 
-class SignIn {
-  static handle(params) {
-    if(params.login === JimRaynor.email) {
-      this.handleSuccess()
-    } else {
-      this.handleFail()
-    }
-  }
 
-  static handleSuccess() {
-    return JimRaynor.token
-  }
+function handle(params) {
+  const {email, password} = params;
 
-  static handleFail() {
-    return 401
+  if(db.users[email]) {
+    return handleSuccess(db.users[email])
+  } else {
+    return handleFail()
   }
 }
 
-export default SignIn
+function handleSuccess(user) {
+  return {
+    token: user.email,
+    user: user
+  }
+}
+
+function handleFail() {
+  return 401
+}
+
+export default handle;
