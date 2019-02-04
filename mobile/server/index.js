@@ -22,6 +22,7 @@ app.post('/api/v1/sign_in', function (req, res) {
 app.get('/api/v1/home', function (req, res) {
   let user_email = req.headers.authorization.split(' ')[1];
   const user = db.users[user_email];
+
   if(user) {
     res.send(home(req.body, user))
   } else {
