@@ -46,7 +46,8 @@ let db = {
       item.box = db.boxes[item.box_id];
       return item
     })
-  }
+  },
+
 };
 
 
